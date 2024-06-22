@@ -1,0 +1,17 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: ssgnack
+
+  # driver config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ssgmysql.iptime.org:3306/ssgdb
+    username: ssg
+    password: nack
+
+# mybatis config
+mybatis:
+  mapper-locations: mappers/**/*.xml
