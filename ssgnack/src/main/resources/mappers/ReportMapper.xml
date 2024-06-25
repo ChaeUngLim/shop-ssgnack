@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssgnack.report.model.dao">
+    <resultMap id="reportResultMap" type="com.ssgnack.report.model.dto.ReportDTO">
+        <id property="date" column="out_date"/>
+        <result property="amount" column="out_amt"/>
+        <result property="price" column="price"/>
+        <result property="productName" column="product_name"/>
+        <result property="companyName" column="company_name"/>
+    </resultMap>
+
+    <select id="totalSales" resultMap="reportResultMap">
+        SELECT
+            DATE_FORMAT(out_date,'%y-%M')m
+            ,SUM(o.out_amt*p.PRICE) 총매출
+        FROM outbound o JOIN
+            product p on o.product_id = p.PRODUCT_ID
+        WHERE
+            o.status = 'Y'
+        GROUP BY m;
+    </select>
+</mapper>
