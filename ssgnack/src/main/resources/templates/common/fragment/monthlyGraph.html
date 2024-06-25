@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -39,13 +39,13 @@
       <div class="inner"></div>
       <div class="rectangle-parent4">
         <div class="group-child6"></div>
-        <b class="b7" id="loginButton">회원가입/로그인</b>
+        <a class="b7" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
       </div>
       <div class="button-popper-element-butt-wrapper">
         <div class="button-popper-element-butt">
           <div class="margin">
             <div class="container8">
-              <input type="text" name="daterange" id="daterange"/>
+              <input type="text" name="datefilter" value="" />
             </div>
           </div>
           <div class="container9"></div>
@@ -190,20 +190,24 @@
         window.location.href = "/main";
       });
   </script>
-  <script>
-    $(function() {
-      $('input[name="daterange"]').daterangepicker({
-        locale: {
-          format: 'MM.DD ddd'
-        },
-        startDate: '06/20/2023',
-        endDate: '06/21/2023'
-      });
-    });
-  </script>
-    <script>
-      document.getElementById("loginButton").addEventListener("click", function() {
-        window.location.href = "login.html";
+    <script type="text/javascript">
+      $(function() {
+
+        $('input[name="datefilter"]').daterangepicker({
+          autoUpdateInput: false,
+          locale: {
+            cancelLabel: 'Clear'
+          }
+        });
+
+        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+          $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+          $(this).val('');
+        });
+
       });
     </script>
   </body>
