@@ -1,5 +1,5 @@
-.group-child1,
-.group-child2 {
+.group-child,
+.group-item {
   position: absolute;
   top: 0;
   left: 0;
@@ -7,7 +7,7 @@
   width: 1280px;
   height: 832px;
 }
-.group-child2 {
+.group-item {
   top: 90px;
   left: 78px;
   border-radius: var(--br-7xs);
@@ -15,33 +15,38 @@
   width: 1124px;
   height: 652px;
 }
-.group-div {
+.rectangle-parent {
   position: absolute;
   top: 0;
   left: 0;
   width: 1280px;
   height: 832px;
 }
-.ssgnack-container,
-.ssgnack1 {
+.ssgnack,
+.ssgnack-wrapper {
   position: absolute;
   width: 204.3px;
   height: 56.2px;
 }
-.ssgnack1 {
+.ssgnack {
   top: 0;
   left: 0;
   display: inline-block;
 }
-.ssgnack-container {
+.ssgnack-wrapper {
   top: 10.1px;
   left: 39px;
   text-align: left;
   font-size: var(--font-size-21xl);
 }
-.group-child3 {
-  top: 0;
+.b,
+.group-inner {
+  position: absolute;
   left: 0;
+  width: 189px;
+}
+.group-inner {
+  top: 0;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: var(--br-7xs);
   background-color: var(--color-cornflowerblue);
@@ -49,44 +54,46 @@
   box-sizing: border-box;
   height: 41px;
 }
-.b2,
-.group-child3,
-.rectangle-parent1 {
-  position: absolute;
-  width: 189px;
-}
-.b2 {
+.b {
   top: 6px;
-  left: 0;
   display: inline-block;
   height: 35px;
 }
-.rectangle-parent1 {
+.email,
+.pw,
+.rectangle-container,
+.rectangle-group {
+  position: absolute;
   top: 471px;
   left: 545px;
+  width: 189px;
   height: 41px;
-  font-size: var(--font-size-xl);
 }
-.emall1,
-.pw1 {
-  position: absolute;
+.email,
+.pw,
+.rectangle-container {
+  top: 538px;
+}
+.email,
+.pw {
   top: 294px;
   left: 441px;
+  font-size: var(--font-size-5xl);
   display: inline-block;
   width: 379px;
   height: 50px;
 }
-.pw1 {
+.pw {
   top: 366px;
 }
-.div1 {
+.div {
   width: 100%;
   position: relative;
   background-color: var(--color-white);
   height: 832px;
   overflow: hidden;
   text-align: center;
-  font-size: var(--font-size-5xl);
+  font-size: var(--font-size-xl);
   color: var(--color-black);
   font-family: var(--font-poppins);
 }
