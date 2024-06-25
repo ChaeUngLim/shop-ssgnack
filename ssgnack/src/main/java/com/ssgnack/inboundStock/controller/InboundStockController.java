@@ -39,6 +39,6 @@ public class InboundStockController {
         model.addAttribute("stockList", stockList);
         model.addAttribute("selectCriteria", selectCriteria);
 
-        return "stock/list";
+        return "inboundStock/stock";
     }
 }
