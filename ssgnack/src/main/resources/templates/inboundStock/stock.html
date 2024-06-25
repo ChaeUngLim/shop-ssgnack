@@ -25,7 +25,23 @@
                 <b class="ssgnack">SSGNACK</b>
                 <b class="admin">Admin님 접속을 환영합니다.</b>
                 <div class="group-item"></div>
-                <b class="stock">재고 조회(stock 테이블)</b>
+                <table>
+                    <tr>
+                        <th>재고번호</th>
+                        <th>상품코드</th>
+                        <th>수량</th>
+                        <th>창고코드</th>
+                    </tr>
+                    <tr th:each="menu: ${stockList}">
+                        <td th:text="${stock.stockId}"></td>
+                        <td th:text="${stock.stockAmt}"></td>
+                        <td th:text="${stock.productId}"></td>
+                        <td th:text="${stock.warehouseId}"></td>
+                    </tr>
+                </table>
+
+
+
                 <div class="rectangle-group">
                     <div class="group-inner"></div>
                     <b class="b">로그아웃</b>

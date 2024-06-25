@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 public class StockDTO {
 
-    private int stock_id;
-    private int stock_amt;
-    private int product_id;
-    private int warehouse_id;
+    private int stockId;
+    private int stockAmt;
+    private int productId;
+    private int warehouseId;
 }
