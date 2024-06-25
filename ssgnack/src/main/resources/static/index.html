@@ -1,13 +1,162 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>SSGNACK</title>
-    </head>
-    <body>
-        Hello
-    </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="global_main.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap" />
+</head>
+<body>
+    <div class="div">
+        <div class="rectangle-parent">
+            <div class="frame-child"></div>
+            <b class="b">전체 매출 현황</b>
+            <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+        <div class="ssgnack-parent">
+            <b class="ssgnack">SSGNACK</b>
+            <b class="admin">Admin님 접속을 환영합니다.</b>
+            <div class="navigation-drawer-wrapper">
+                <div class="navigation-drawer">
+                    <div class="top-wrapper">
+                        <div class="top">
+                            <div class="frame-parent">
+                                <div class="vector-parent">
+                                    <img class="vector-icon" alt="" src="main_img/vector.svg" />
+                                    <div class="menu" id="mainButton">MENU</div>
+                                </div>
+                                <div class="productmanage">
+                                    <div class="component-2variant3">
+                                        <div class="nav-item">
+                                            <div class="productmanage">
+                                                <div class="left">
+                                                    <img class="administration-1-icon" alt="" src="main_img/administration-1@2x.png" />
+                                                    <div class="promotion">재고 관리</div>
+                                                </div>
+                                            </div>
+                                            <img class="arrow-chevron-down-icon" alt="" src="main_img/arrowchevrondown.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="productmanage">
+                                    <div class="component-2variant3">
+                                        <div class="nav-item">
+                                            <div class="productmanage">
+                                                <div class="left">
+                                                    <img class="administration-1-icon" alt="" src="main_img/promotion-1@2x.png" />
+                                                    <div class="promotion">제품 관리</div>
+                                                </div>
+                                            </div>
+                                            <img class="arrow-chevron-down-icon" alt="" src="main_img/arrowchevrondown.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="productmanage">
+                                    <div class="component-2variant3">
+                                        <div class="nav-item">
+                                            <div class="productmanage">
+                                                <div class="left">
+                                                    <img class="administration-1-icon" alt="" src="main_img/customerloyalty-1@2x.png" />
+                                                    <div class="promotion">입고</div>
+                                                </div>
+                                            </div>
+                                            <img class="arrow-chevron-down-icon" alt="" src="main_img/arrowchevrondown.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="productmanage">
+                                    <div class="component-2variant3">
+                                        <div class="nav-item">
+                                            <div class="productmanage">
+                                                <div class="left">
+                                                    <img class="administration-1-icon" alt="" src="main_img/productmanagement-1@2x.png" />
+                                                    <div class="promotion">출고</div>
+                                                </div>
+                                            </div>
+                                            <img class="arrow-chevron-down-icon" alt="" src="main_img/arrowchevrondown.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="orders">
+                                    <div class="ordersvariant1">
+                                        <div class="productmanage">
+                                            <div class="component-2variant3">
+                                                <div class="nav-item">
+                                                    <div class="productmanage">
+                                                        <div class="left">
+                                                            <img class="administration-1-icon" alt="" src="main_img/order-2@2x.png" />
+                                                            <div class="promotion">Orders</div>
+                                                        </div>
+                                                    </div>
+                                                    <img class="arrow-chevron-down-icon" alt="" src="main_img/arrowchevrondown.svg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rectangle-group">
+                <div class="group-child"></div>
+                <b class="b1" id="loginButton">회원가입/로그인</b>
+            </div>
+        </div>
+        <div class="buttons-parent">
+            <div class="buttons">
+                <img class="icon-lineexternal-link" alt="" src="main_img/icon-lineexternal-link.svg" />
+                <b class="button" id="productgraphButton">상품별 매출</b>
+            </div>
+            <img class="package-icon" alt="" src="main_img/package.svg" />
+        </div>
+        <div class="buttons-group">
+            <div class="buttons">
+                <img class="icon-lineexternal-link" alt="" src="main_img/icon-lineexternal-link.svg" />
+                <b class="button" id="brandgraphButton">브랜드별 매출</b>
+            </div>
+            <div class="buttons-wrapper">
+                <div class="buttons">
+                    <img class="icon-lineexternal-link" alt="" src="main_img/icon-lineexternal-link.svg" />
+                    <b class="button" id="monthlygraphButton">기간별 매출</b>
+                </div>
+            </div>
+        </div>
+        <img class="chart-icon" alt="" src="main_img/chart.svg" />
+        <img class="date-today-icon" alt="" src="main_img/date-today.svg" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    <script>
+        document.getElementById("mainButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+    </script>
+    <script>
+        document.getElementById("productgraphButton").addEventListener("click", function() {
+            window.location.href = "/productgraph";
+        });
+    </script>
+    <script>
+        document.getElementById("brandgraphButton").addEventListener("click", function() {
+            window.location.href = "/brandgraph";
+        });
+    </script>
+    <script>
+        document.getElementById("monthlygraphButton").addEventListener("click", function() {
+            window.location.href = "/monthlygraph";
+        });
+    </script>
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function() {
+            window.location.href = "/login";
+        });
+    </script>
+</body>
 </html>
