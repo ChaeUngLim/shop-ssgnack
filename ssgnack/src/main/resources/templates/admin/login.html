@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link th:href="@{/css/admin/global_login.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/login.css}" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="div">
+      <div class="rectangle-parent">
+        <div class="group-child"></div>
+        <div class="group-item"></div>
+      </div>
+      <div class="ssgnack-wrapper">
+        <b class="ssgnack">SSGNACK</b>
+      </div>
+      <div class="rectangle-container">
+        <div class="group-inner"></div>
+<!--        <b class="b" id="signupButton">회원가입하기</b>-->
+        <a class="b" th:href="@{/admin/signup}" id="signupButton" style="text-decoration-line:none; color: black">
+          <b>
+            회원가입하기
+          </b>
+        </a>
+      </div>
+      <form name="loginForm" th:object="${adminFormDto}" th:action method="post">
+        <input type="text" class="email" name="email" placeholder="Email을 입력하세요"></input>
+        <input type="password" class="pw" name="pw" placeholder="PW를 입력하세요"></input>
+        <div class="rectangle-group">
+            <button type="submit" class="group-inner" style="font-weight: bold; font-size: var(--font-size-xl); cursor: pointer;" >로그인</button>
+        </div>
+      </form>
+    </div>
+<!--    <script>-->
+<!--      document.getElementById("signupButton").addEventListener("click", function() {-->
+<!--        window.location.href = "signup.html";-->
+<!--      });-->
+<!--    </script>-->
+  </body>
+</html>
