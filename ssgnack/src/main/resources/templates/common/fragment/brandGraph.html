@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global_main.css" />
+    <link rel="stylesheet" href="./brandGraph.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="div4">
+      <div class="rectangle-parent1">
+        <div class="group-child1"></div>
+        <b class="ssgnack2">SSGNACK</b>
+        <b class="admin2">Admin님 접속을 환영합니다.</b>
+        <div class="group-child2">
+          <div class="chart-container">
+            <canvas id="brandChart"></canvas>
+          </div>
+        </div>
+        <b class="b4">브랜드별 매출 보고</b>
+      </div>
+      <div class="item"></div>
+      <div class="rectangle-parent2">
+        <div class="group-child3"></div>
+        <b class="b5" id="loginButton">회원가입/로그인</b>
+      </div>
+      <div class="div5">
+        <div class="form1">
+          <div class="background1">
+            <div class="container4">
+              <div class="button-1">
+                <img class="img-icon1" alt="" src="./public/img.svg" />
+              </div>
+            </div>
+            <div class="input-1">
+              <div class="container5">
+                <div class="div6">검색</div>
+              </div>
+              <div class="container6">
+                <div class="container7"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navigation-drawer-frame">
+        <div class="navigation-drawer2">
+          <div class="top-frame">
+            <div class="top2">
+              <div class="frame-container">
+                <div class="vector-container">
+                  <img class="vector-icon2" alt="" src="./public/vector.svg" />
+
+                  <div class="menu2" id="mainButton">MENU</div>
+                </div>
+                <div class="productmanage2">
+                  <div class="component-2variant310">
+                    <div class="nav-item10">
+                      <div class="productmanage2">
+                        <div class="left10">
+                          <img
+                            class="administration-1-icon2"
+                            alt=""
+                            src="./public/administration-1@2x.png"
+                          />
+
+                          <div class="promotion12">재고 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon10"
+                        alt=""
+                        src="./public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage2">
+                  <div class="component-2variant310">
+                    <div class="nav-item10">
+                      <div class="productmanage2">
+                        <div class="left10">
+                          <img
+                            class="administration-1-icon2"
+                            alt=""
+                            src="./public/promotion-1@2x.png"
+                          />
+
+                          <div class="promotion12">제품 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon10"
+                        alt=""
+                        src="./public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage2">
+                  <div class="component-2variant310">
+                    <div class="nav-item10">
+                      <div class="productmanage2">
+                        <div class="left10">
+                          <img
+                            class="administration-1-icon2"
+                            alt=""
+                            src="./public/customerloyalty-1@2x.png"
+                          />
+
+                          <div class="promotion12">입고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon10"
+                        alt=""
+                        src="./public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage2">
+                  <div class="component-2variant310">
+                    <div class="nav-item10">
+                      <div class="productmanage2">
+                        <div class="left10">
+                          <img
+                            class="administration-1-icon2"
+                            alt=""
+                            src="./public/productmanagement-1@2x.png"
+                          />
+
+                          <div class="promotion12">출고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon10"
+                        alt=""
+                        src="./public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="orders4">
+                  <div class="ordersvariant12">
+                    <div class="productmanage2">
+                      <div class="component-2variant310">
+                        <div class="nav-item10">
+                          <div class="productmanage2">
+                            <div class="left10">
+                              <img
+                                class="administration-1-icon2"
+                                alt=""
+                                src="./public/order-2@2x.png"
+                              />
+
+                              <div class="promotion12">Orders</div>
+                            </div>
+                          </div>
+                          <img
+                            class="arrow-chevron-down-icon10"
+                            alt=""
+                            src="./public/arrowchevrondown.svg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chart.js 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 바 형태의 그래프 스크립트 -->
+    <script src="./brand_chart.js"></script>
+    <script>
+      document.getElementById("mainButton").addEventListener("click", function() {
+          window.location.href = "main.html";
+      });
+  </script>
+    <script>
+      document.getElementById("loginButton").addEventListener("click", function() {
+        window.location.href = "login.html";
+      });
+    </script>
+  </body>
+</html>
