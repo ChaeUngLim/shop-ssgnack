@@ -11,7 +11,9 @@ spring:
     url: jdbc:mysql://ssg-java2.iptime.org:3306/ssgdb
     username: ssg
     password: nack
+  thymeleaf:
+    cache: false
 
 # mybatis config
 mybatis:
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: classpath:mappers/*.xml
