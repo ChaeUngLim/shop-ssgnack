@@ -8,10 +8,8 @@ import lombok.*;
 @Setter
 public class ReportDTO {
 
-    private String date;
-    private int amount;
-    private int price;
+    private String totalMonth;
+    private int totalSale;
     private String productName;
-    private String companyName;
 
 }

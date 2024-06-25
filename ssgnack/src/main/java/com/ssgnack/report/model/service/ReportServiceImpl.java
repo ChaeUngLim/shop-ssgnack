@@ -22,4 +22,15 @@ public class ReportServiceImpl implements ReportService{
         log.info("totalSales : " + reportMapper.totalSales());
         return reportMapper.totalSales();
     }
+
+    @Override
+    public List<ReportDTO> productSales(String productName) {
+
+        return reportMapper.productSales(productName);
+    }
+
+    @Override
+    public List<ReportDTO> brandSales(String companyName) {
+        return reportMapper.brandSales(companyName);
+    }
 }

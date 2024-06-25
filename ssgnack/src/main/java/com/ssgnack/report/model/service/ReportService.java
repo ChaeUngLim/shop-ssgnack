@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ReportService {
     List<ReportDTO> totalSales();
+
+    List<ReportDTO> productSales(String productName);
+
+    List<ReportDTO> brandSales(String companyName);
 }

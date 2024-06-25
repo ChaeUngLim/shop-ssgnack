@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -59,15 +60,45 @@ public class ReportController {
         return "common/fragment/monthlyGraph";
     }
 
+    /***
+     * 전체 매출 현황
+     */
     @GetMapping("/totalSales")
     public String totalSales(Model model){
         List<ReportDTO> reportList = reportService.totalSales();
         for (ReportDTO reportDTO : reportList) {
-            System.out.println("reportDTO.getPrice() = " + reportDTO.getPrice());
+            System.out.println("reportDTO.getTotalSales/getTotalMonth = " + reportDTO.getTotalSale() + "/" + reportDTO.getTotalMonth());
         }
         log.info("Total sales report: {}", reportList);
         model.addAttribute("reportList", reportList);
         return "common/fragment/main";
     }
 
+    /***
+     * 상품별 매출 현황
+     */
+    @GetMapping("/productSales")
+    public String productSales(Model model, @RequestParam(required = false) String productName){
+        log.info("productName {}", productName);
+        List<ReportDTO> reportList = reportService.productSales(productName);
+        for (ReportDTO reportDTO : reportList) {
+            System.out.println("reportDTO.getTotalMonth() + \"/\" +reportDTO.getTotalSale() = " + reportDTO.getTotalMonth() + "/" +reportDTO.getTotalSale());
+        }
+        model.addAttribute("reportList", reportList);
+        return "common/fragment/productGraph";
+    }
+
+    /***
+     * 브랜드별 매출 현황
+     */
+    @GetMapping("/brandSales")
+    public String brandSales(Model model, @RequestParam(required = false) String companyName){
+        log.info("brandName {}", companyName);
+        List<ReportDTO> reportList = reportService.brandSales(companyName);
+        for (ReportDTO reportDTO : reportList) {
+            System.out.println("reportDTO.getProductName() + \"/\" +reportDTO.getTotalSale() = " + reportDTO.getProductName() + "/" +reportDTO.getTotalSale());
+        }
+        model.addAttribute("reportList", reportList);
+        return "common/fragment/brandGraph";
+    }
 }

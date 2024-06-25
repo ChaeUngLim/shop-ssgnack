@@ -2,23 +2,50 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssgnack.report.model.dao">
+<mapper namespace="com.ssgnack.report.model.dao.ReportMapper">
     <resultMap id="reportResultMap" type="com.ssgnack.report.model.dto.ReportDTO">
-        <id property="date" column="out_date"/>
-        <result property="amount" column="out_amt"/>
-        <result property="price" column="price"/>
-        <result property="productName" column="product_name"/>
-        <result property="companyName" column="company_name"/>
+        <id property="totalMonth" column="yearMonth"/>
+        <result property="totalSale" column="totalPrice"/>
+        <result property="productName" column="PRODUCT_NAME"/>
     </resultMap>
 
     <select id="totalSales" resultMap="reportResultMap">
         SELECT
-            DATE_FORMAT(out_date,'%y-%M')m
-            ,SUM(o.out_amt*p.PRICE) 총매출
+            DATE_FORMAT(out_date,'%y-%M') yearMonth
+            ,SUM(o.out_amt*p.PRICE) totalPrice
         FROM outbound o JOIN
             product p on o.product_id = p.PRODUCT_ID
         WHERE
             o.status = 'Y'
-        GROUP BY m;
+        GROUP BY yearMonth;
     </select>
+
+    <select id="productSales" resultMap="reportResultMap">
+        SELECT
+            DATE_FORMAT(out_date,'%y-%M')yearMonth
+            ,SUM(o.out_amt*p.PRICE) totalPrice
+        FROM outbound o JOIN
+            product p on o.product_id = p.PRODUCT_ID
+        WHERE
+            o.status = 'Y'
+        <if test="productName != null">
+            AND p.PRODUCT_NAME LIKE CONCAT ('%', #{ productName }, '%')
+        </if>
+        GROUP BY yearMonth;
+    </select>
+
+    <select id="brandSales" resultMap="reportResultMap">
+        SELECT
+            p.PRODUCT_NAME
+            ,SUM(o.out_amt*p.PRICE) totalPrice
+        FROM outbound o LEFT JOIN
+            product p on o.product_id = p.PRODUCT_ID
+        LEFT JOIN
+            product_temp t on p.PRODUCT_NAME = t.product_name
+        WHERE
+            o.status = 'Y'
+            AND t.company_name LIKE CONCAT ('%', #{ companyName }, '%')
+        GROUP BY p.PRODUCT_NAME;
+    </select>
+
 </mapper>
