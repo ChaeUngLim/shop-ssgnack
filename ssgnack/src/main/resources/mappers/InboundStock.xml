@@ -12,16 +12,16 @@
 
     <select id="findAllStock" resultMap="inboundStockResultMap">
         SELECT
-            b.stock_id,
-            b.stock_amt,
-            b.product_id,
-            b.warehouse_id
+        b.stock_id,
+        b.stock_amt,
+        b.product_id,
+        b.warehouse_id
         FROM
         (SELECT
-            a.stock_id,
-            a.stock_amt,
-            a.product_id,
-            a.warehouse_id
+        a.stock_id,
+        a.stock_amt,
+        a.product_id,
+        a.warehouse_id
         FROM stock a
         ORDER BY stock_id) b
         LIMIT #{startRow}, #{limit}
@@ -29,20 +29,28 @@
 
     <select id="selectTotalCount" resultType="_int">
         SELECT
-            COUNT(*)
+        COUNT(*)
         FROM stock
     </select>
 
     <insert id="inNewStock">
-        INSERT INTO stock
+        INSERT INTO inbound
         (
-            product_id,
-            stock_amt
+        product_id,
+        stock_amt,
+        admin_id  <!-- 일단 하드코딩. 나중에 session에서 가져오기 -->
         )
         VALUES
         (
         #{productId},
-        #{stockAmt}
+        #{stockAmt},
+        #{adminId}
         )
     </insert>
+
+    <select id="getLastInsertId">
+        SELECT LAST_INSERT_ID()
+        FROM stock
+    </select>
+
 </mapper>

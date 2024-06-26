@@ -54,10 +54,13 @@ public class InboundStockController {
     , RedirectAttributes rttr, Model model) {
         log.info("[InboundStockController] inStock newStock: {}", newStock);
 
+        newStock.setAdminId(1);
         inboundStockService.inNewStock(newStock);
 
         rttr.addFlashAttribute("successMessage", "입고에 성공했습니다.");
 
         return "redirect:/inboundStock/inbound";
     }
+
+    // 입고 내역 조회
 }

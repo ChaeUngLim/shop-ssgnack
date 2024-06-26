@@ -2,7 +2,8 @@ package com.ssgnack.inboundStock.model.dto;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+//import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,7 +13,8 @@ import java.time.LocalDate;
 public class InboundDTO {
 
     private int inboundId;
-    private LocalDate inDate;
+    private Timestamp inDate;
+//    private LocalDate inDate;
     private int inAmt;
     private int adminId;
     private int productId;
