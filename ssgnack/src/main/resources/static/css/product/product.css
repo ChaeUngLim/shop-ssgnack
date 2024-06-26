@@ -6,6 +6,7 @@
   width: 1280px;
   height: 832px;
 }
+
 .admin,
 .ssgnack {
   position: absolute;
@@ -36,6 +37,9 @@
   height: 630px;
   overflow: scroll;
 }
+.group-item div {
+  text-align: left;
+}
 .product-header {
   top: 0px;
   position: sticky;
@@ -51,6 +55,12 @@
   width: 959px;
   height: 476px;
 }
+.b,
+.group-inner,
+.rectangle-group {
+  position: absolute;
+  width: 189px;
+}
 .group-inner {
   top: 0;
   left: 0;
@@ -60,12 +70,6 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   height: 41px;
-}
-.b,
-.group-inner,
-.rectangle-group {
-  position: absolute;
-  width: 189px;
 }
 .b {
   top: 6px;
@@ -95,6 +99,9 @@
   display: inline-block;
   width: 177.4px;
   height: 46.1px;
+  border: none;
+  resize: none;
+  text-align: center;
 }
 .group-child3,
 .group-div,
@@ -147,6 +154,7 @@
   justify-content: center;
   width: 53px;
   height: 46.1px;
+  cursor: pointer;
 }
 .rectangle-parent3 {
   position: absolute;
@@ -314,4 +322,51 @@
   font-size: var(--font-size-5xl);
   color: var(--color-black);
   font-family: var(--font-poppins);
+}
+
+.product-delete,
+.product-insert,
+.product-update {
+  position: absolute;
+  top: 731px;
+  left: 695px;
+  width: 204px;
+  height: 61px;
+  cursor: pointer;
+}
+
+.product-delete {
+  left: 475px;
+}
+.product-update {
+  left: 255px;
+}
+
+.product-delete>.rectangle-div:hover,
+.product-insert>.rectangle-div:hover,
+.product-update>.rectangle-div:hover,
+.group-item>.rectangle-div:hover {
+  background-color: #FFFFFF;
+  border: #547aff 1px solid;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.group-item>.rectangle-div {
+  top: 555px;
+  left: 795px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.group-item>.rectangle-div>.b1 {
+  text-align: center;
+}
+
+.insertHeader {
+  margin-top: 20px;
+}
+
+.dp-none {
+  display: none;
 }
