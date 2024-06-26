@@ -24,11 +24,12 @@ public interface InboundStockMapper {
      * 입고 정보 삽입 후 자동으로 생성된 키 값을 newStock rorcpdml inboundId 필드에 설정
      * @param newStock
      */
-    void inNewStock(InboundDTO newStock);
+    void inNewStock(StockDTO newStock);
 
     /***
      * 마지막으로 삽입된 레코드의 자동 생성된 키 값을 조회
      * @return
      */
     int getLastInsertId();
+    void insertInboundHistory(InboundDTO inboundDTO);
 }

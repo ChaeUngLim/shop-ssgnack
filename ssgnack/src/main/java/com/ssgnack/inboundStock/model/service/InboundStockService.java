@@ -12,5 +12,5 @@ public interface InboundStockService {
 
     List<StockDTO> findAllStock(SelectCriteria selectCriteria);
 
-    void inNewStock(InboundDTO newStock);
+    void inNewStock(StockDTO newStock);
 }
