@@ -12,18 +12,16 @@
 
     <select id="findAllStock" resultMap="inboundStockResultMap">
         SELECT
-        b.stock_id,
         b.stock_amt,
         b.product_id,
         b.warehouse_id
         FROM
         (SELECT
-        a.stock_id,
         a.stock_amt,
         a.product_id,
         a.warehouse_id
         FROM stock a
-        ORDER BY stock_id) b
+        ORDER BY a.product_id) b
         LIMIT #{startRow}, #{limit}
     </select>
 
@@ -33,24 +31,31 @@
         FROM stock
     </select>
 
-    <insert id="inNewStock">
-        INSERT INTO inbound
-        (
-        product_id,
-        stock_amt,
-        admin_id  <!-- 일단 하드코딩. 나중에 session에서 가져오기 -->
-        )
-        VALUES
-        (
-        #{productId},
-        #{stockAmt},
-        #{adminId}
-        )
-    </insert>
+    <update id="inNewStock">
+        UPDATE stock SET
+        stock_amt = stock_amt + #{ stockAmt }
+        WHERE product_id = #{ productId }
+          AND warehouse_id = #{ warehouseId }
+    </update>
 
     <select id="getLastInsertId">
         SELECT LAST_INSERT_ID()
-        FROM stock
+        FROM inbound
     </select>
+
+    <insert id="insertInboundHistory">
+        INSERT INTO INBOUND
+        (
+        IN_AMT,
+        ADMIN_ID,
+        PRODUCT_ID
+        )
+        VALUES
+        (
+        #{ inAmt },
+        #{ adminId },
+        #{ productId }
+        )
+    </insert>
 
 </mapper>
