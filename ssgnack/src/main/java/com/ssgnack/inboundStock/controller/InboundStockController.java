@@ -59,8 +59,7 @@ public class InboundStockController {
 
         rttr.addFlashAttribute("successMessage", "입고에 성공했습니다.");
 
-        return "redirect:/inboundStock/inbound";
+        return "redirect:/stock/inbound";
     }
 
-    // 입고 내역 조회
 }
