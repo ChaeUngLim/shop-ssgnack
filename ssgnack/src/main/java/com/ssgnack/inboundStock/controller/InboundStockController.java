@@ -50,16 +50,15 @@ public class InboundStockController {
     }
 
     @PostMapping("/inbound")
-    public String inStock(@ModelAttribute InboundDTO newStock
+    public String inStock(@ModelAttribute StockDTO newStock
     , RedirectAttributes rttr, Model model) {
         log.info("[InboundStockController] inStock newStock: {}", newStock);
 
-        newStock.setAdminId(1);
         inboundStockService.inNewStock(newStock);
 
         rttr.addFlashAttribute("successMessage", "입고에 성공했습니다.");
 
-        return "redirect:/stock/inbound";
+        return "redirect:/stock/list";
     }
 
 }
