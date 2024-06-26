@@ -32,4 +32,17 @@
             COUNT(*)
         FROM stock
     </select>
+
+    <insert id="inNewStock">
+        INSERT INTO stock
+        (
+            product_id,
+            stock_amt
+        )
+        VALUES
+        (
+        #{productId},
+        #{stockAmt}
+        )
+    </insert>
 </mapper>
