@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div class="div">
@@ -36,7 +37,9 @@
                                             <div class="productmanage">
                                                 <div class="left">
                                                     <img class="administration-1-icon" alt="" src="/main_img/administration-1@2x.png" />
-                                                    <div class="promotion">재고 관리</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/list" style="text-decoration-line: none; color: white">재고 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img class="arrow-chevron-down-icon" alt="" src="/main_img/arrowchevrondown.svg" />
@@ -62,7 +65,9 @@
                                             <div class="productmanage">
                                                 <div class="left">
                                                     <img class="administration-1-icon" alt="" src="/main_img/customerloyalty-1@2x.png" />
-                                                    <div class="promotion">입고</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/inbound">입고</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img class="arrow-chevron-down-icon" alt="" src="/main_img/arrowchevrondown.svg" />
@@ -106,7 +111,7 @@
             </div>
             <div class="rectangle-group">
                 <div class="group-child"></div>
-                <b class="b1" id="loginButton">회원가입/로그인</b>
+                <a class="b1" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
             </div>
         </div>
         <div class="buttons-parent">
@@ -132,7 +137,53 @@
         <img class="date-today-icon" alt="" src="/main_img/date-today.svg" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/chart.js"></script>
+    <script th:inline="javascript">
+
+            $.ajax({
+                url: "totalSales",
+                type: "get",
+                data: {},
+                success: function (data) {
+                    console.log(data);
+
+                    var ctx = document.getElementById('salesChart').getContext('2d');
+                    var salesChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: data.totalMonth,
+                            datasets: [
+                                {
+                                    label: '매출',
+                                    data: data.totalsale,
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1,
+                                    fill: false
+                                },
+                                {
+                                    label: '순이익',
+                                    data: data.totalIncome,
+                                    borderColor: 'rgba(255, 159, 64, 1)',
+                                    borderWidth: 1,
+                                    fill: false
+                                },
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+        });
+
+    </script>
     <script>
         document.getElementById("mainButton").addEventListener("click", function() {
             window.location.href = "/main";
@@ -151,11 +202,6 @@
     <script>
         document.getElementById("monthlygraphButton").addEventListener("click", function() {
             window.location.href = "/monthlygraph";
-        });
-    </script>
-    <script>
-        document.getElementById("loginButton").addEventListener("click", function() {
-            window.location.href = "/login";
         });
     </script>
 </body>

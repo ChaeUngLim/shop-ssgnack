@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssgnack.inboundStock.model.dao.InboundStockMapper">
+    <resultMap id="inboundStockResultMap" type="com.ssgnack.inboundStock.model.dto.StockDTO">
+        <id property="stockId" column="stock_id"/>
+        <result property="stockAmt" column="stock_amt"/>
+        <result property="productId" column="product_id"/>
+        <result property="warehouseId" column="warehouse_id"/>
+    </resultMap>
+
+    <select id="findAllStock" resultMap="inboundStockResultMap">
+        SELECT
+        b.stock_id,
+        b.stock_amt,
+        b.product_id,
+        b.warehouse_id
+        FROM
+        (SELECT
+        a.stock_id,
+        a.stock_amt,
+        a.product_id,
+        a.warehouse_id
+        FROM stock a
+        ORDER BY stock_id) b
+        LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectTotalCount" resultType="_int">
+        SELECT
+        COUNT(*)
+        FROM stock
+    </select>
+
+    <insert id="inNewStock">
+        INSERT INTO inbound
+        (
+        product_id,
+        stock_amt,
+        admin_id  <!-- 일단 하드코딩. 나중에 session에서 가져오기 -->
+        )
+        VALUES
+        (
+        #{productId},
+        #{stockAmt},
+        #{adminId}
+        )
+    </insert>
+
+    <select id="getLastInsertId">
+        SELECT LAST_INSERT_ID()
+        FROM stock
+    </select>
+
+</mapper>
