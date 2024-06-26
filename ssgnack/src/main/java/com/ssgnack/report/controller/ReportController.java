@@ -30,6 +30,30 @@ public class ReportController {
     }
 
     /***
+     * 상품별
+     */
+    @GetMapping("/report/productGraph")
+    public String productPage(){
+        return "report/productGraph";
+    }
+
+    /***
+     * 브랜드별
+     */
+    @GetMapping("/report/brandGraph")
+    public String brandPage(){
+        return "report/brandGraph";
+    }
+
+    /***
+     * 기간별
+     */
+    @GetMapping("/report/monthlyGraph")
+    public String monthlyPage(){
+        return "report/monthlyGraph";
+    }
+
+    /***
      * MENU버튼 메인페이지 이동
      */
     @GetMapping("/main")

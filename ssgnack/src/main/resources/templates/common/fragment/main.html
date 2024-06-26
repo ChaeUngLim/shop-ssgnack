@@ -113,25 +113,25 @@
             </div>
             <div class="rectangle-group">
                 <div class="group-child"></div>
-                <a class="b1" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+                <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: black">회원가입/로그인</a>
             </div>
         </div>
         <div class="buttons-parent">
             <div class="buttons">
                 <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                <b class="button" id="productgraphButton">상품별 매출</b>
+                <a th:href="@{/report/productGraph}" class="button" id="productgraphButton" style="text-decoration-line:none; color: white">상품별 매출</a>
             </div>
             <img class="package-icon" alt="" src="/main_img/package.svg" />
         </div>
         <div class="buttons-group">
             <div class="buttons">
                 <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                <b class="button" id="brandgraphButton">브랜드별 매출</b>
+                <a th:href="@{/report/brandGraph}" class="button" id="brandgraphButton" style="text-decoration-line:none; color: white">브랜드별 매출</a>
             </div>
             <div class="buttons-wrapper">
                 <div class="buttons">
                     <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                    <b class="button" id="monthlygraphButton">기간별 매출</b>
+                    <a th:href="@{/report/monthlyGraph}" class="button" id="monthlygraphButton" style="text-decoration-line:none; color: white">기간별 매출</a>
                 </div>
             </div>
         </div>
@@ -191,19 +191,14 @@
             window.location.href = "/main";
         });
     </script>
-    <script>
-        document.getElementById("productgraphButton").addEventListener("click", function() {
-            window.location.href = "/productgraph";
-        });
-    </script>
-    <script>
-        document.getElementById("brandgraphButton").addEventListener("click", function() {
-            window.location.href = "/brandgraph";
-        });
-    </script>
+<!--    <script>-->
+<!--        document.getElementById("brandgraphButton").addEventListener("click", function() {-->
+<!--            window.location.href = "../../report/brandgraph";-->
+<!--        });-->
+<!--    </script>-->
     <script>
         document.getElementById("monthlygraphButton").addEventListener("click", function() {
-            window.location.href = "/monthlygraph";
+            window.location.href = "../product/monthlygraph";
         });
     </script>
 </body>

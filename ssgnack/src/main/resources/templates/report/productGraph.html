@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="/css/report/global_report.css" />
-    <link rel="stylesheet" href="/css/report/productGraph.css" />
+    <link rel="stylesheet" th:href="@{/css/report/productGraph.css}"/>
+    <link rel="stylesheet" th:href="@{/css/report/global_report.css}"/>
+    <link rel="stylesheet" th:href="@{/global_main.css}"/>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -45,7 +45,7 @@
           <div class="background">
             <div class="container">
               <div class="button-">
-                <img class="img-icon" alt="" src="/public/img.svg" />
+                <img class="img-icon" alt="" src="../public/img.svg" />
               </div>
             </div>
             <div class="input-">
@@ -54,10 +54,8 @@
               <div class="container2">
                 <div class="container3">
                   <div>
-<!--                    <form action="/productSales">-->
                       <input type="text" name="productName" id="productName" style="width: 90%">
                       <button type="button" id="btnSearch">검색</button>
-<!--                    </form>-->
                   </div>
                 </div>
               </div>
@@ -71,7 +69,7 @@
             <div class="top">
               <div class="frame-parent">
                 <div class="vector-parent">
-                  <img class="vector-icon" alt="" src="/public/vector.svg" />
+                  <img class="vector-icon" alt="" src="../public/vector.svg" />
 
                   <div class="menu" id="mainButton">MENU</div>
                 </div>
@@ -83,7 +81,7 @@
                           <img
                             class="administration-1-icon"
                             alt=""
-                            src="/public/administration-1@2x.png"
+                            src="../public/administration-1@2x.png"
                           />
 
                           <div class="promotion">재고 관리</div>
@@ -92,7 +90,7 @@
                       <img
                         class="arrow-chevron-down-icon"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -105,7 +103,7 @@
                           <img
                             class="administration-1-icon"
                             alt=""
-                            src="/public/promotion-1@2x.png"
+                            src="../public/promotion-1@2x.png"
                           />
 
                           <div class="promotion">제품 관리</div>
@@ -114,7 +112,7 @@
                       <img
                         class="arrow-chevron-down-icon"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -127,7 +125,7 @@
                           <img
                             class="administration-1-icon"
                             alt=""
-                            src="/public/customerloyalty-1@2x.png"
+                            src="../public/customerloyalty-1@2x.png"
                           />
 
                           <div class="promotion">입고</div>
@@ -136,7 +134,7 @@
                       <img
                         class="arrow-chevron-down-icon"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -149,7 +147,7 @@
                           <img
                             class="administration-1-icon"
                             alt=""
-                            src="/public/productmanagement-1@2x.png"
+                            src="../public/productmanagement-1@2x.png"
                           />
 
                           <div class="promotion">출고</div>
@@ -158,7 +156,7 @@
                       <img
                         class="arrow-chevron-down-icon"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -173,7 +171,7 @@
                               <img
                                 class="administration-1-icon"
                                 alt=""
-                                src="/public/order-2@2x.png"
+                                src="../public/order-2@2x.png"
                               />
 
                               <div class="promotion">Orders</div>
@@ -182,7 +180,7 @@
                           <img
                             class="arrow-chevron-down-icon"
                             alt=""
-                            src="/public/arrowchevrondown.svg"
+                            src="../public/arrowchevrondown.svg"
                           />
                         </div>
                       </div>
@@ -205,7 +203,7 @@
           console.log(productName);
 
           $.ajax({
-            url: "productSales",
+            url: "/productSales",
             type: "get",
             data: {productName},
             success: function (data) {

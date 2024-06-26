@@ -5,9 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="/css/report/global_report.css" />
-    <link rel="stylesheet" href="/css/report/monthlyGraph.css" />
+    <link rel="stylesheet" th:href="@{/css/report/monthlyGraph.css}"/>
+    <link rel="stylesheet" th:href="@{/global_main.css}"/>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -60,7 +59,7 @@
             <div class="top3">
               <div class="frame-parent1">
                 <div class="vector-parent1">
-                  <img class="vector-icon3" alt="" src="/public/vector.svg" />
+                  <img class="vector-icon3" alt="" src="../public/vector.svg" />
 
                   <div class="menu3" id="mainButton">MENU</div>
                 </div>
@@ -72,7 +71,7 @@
                           <img
                             class="administration-1-icon3"
                             alt=""
-                            src="/public/administration-1@2x.png"
+                            src="../public/administration-1@2x.png"
                           />
 
                           <div class="promotion18">재고 관리</div>
@@ -81,7 +80,7 @@
                       <img
                         class="arrow-chevron-down-icon15"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -94,7 +93,7 @@
                           <img
                             class="administration-1-icon3"
                             alt=""
-                            src="/public/promotion-1@2x.png"
+                            src="../public/promotion-1@2x.png"
                           />
 
                           <div class="promotion18">제품 관리</div>
@@ -103,7 +102,7 @@
                       <img
                         class="arrow-chevron-down-icon15"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -116,7 +115,7 @@
                           <img
                             class="administration-1-icon3"
                             alt=""
-                            src="/public/customerloyalty-1@2x.png"
+                            src="../public/customerloyalty-1@2x.png"
                           />
 
                           <div class="promotion18">입고</div>
@@ -125,7 +124,7 @@
                       <img
                         class="arrow-chevron-down-icon15"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -138,7 +137,7 @@
                           <img
                             class="administration-1-icon3"
                             alt=""
-                            src="/public/productmanagement-1@2x.png"
+                            src="../public/productmanagement-1@2x.png"
                           />
 
                           <div class="promotion18">출고</div>
@@ -147,7 +146,7 @@
                       <img
                         class="arrow-chevron-down-icon15"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -162,7 +161,7 @@
                               <img
                                 class="administration-1-icon3"
                                 alt=""
-                                src="/public/order-2@2x.png"
+                                src="../public/order-2@2x.png"
                               />
 
                               <div class="promotion18">Orders</div>
@@ -171,7 +170,7 @@
                           <img
                             class="arrow-chevron-down-icon15"
                             alt=""
-                            src="/public/arrowchevrondown.svg"
+                            src="../public/arrowchevrondown.svg"
                           />
                         </div>
                       </div>
@@ -200,7 +199,7 @@
         }, function (start, end, label) {
           console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
           $.ajax({
-            url: "monthlySales",
+            url: "/monthlySales",
             type: "get",
             data: {
               start: start.format('YYYY-MM-DD'),

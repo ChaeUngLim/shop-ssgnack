@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="/css/report/global_report.css" />
-    <link rel="stylesheet" href="/css/report/brandGraph.css" />
+    <link rel="stylesheet" th:href="@{/css/report/brandGraph.css}"/>
+    <link rel="stylesheet" th:href="@{/css/report/global_report.css}"/>
+    <link rel="stylesheet" th:href="@{/global_main.css}"/>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -45,7 +45,7 @@
           <div class="background1">
             <div class="container4">
               <div class="button-1">
-                <img class="img-icon1" alt="" src="/public/img.svg" />
+                <img class="img-icon1" alt="" src="../public/img.svg" />
               </div>
             </div>
             <div class="input-1">
@@ -54,10 +54,8 @@
               </div>
               <div class="container6">
                 <div class="container7">
-<!--                  <form action="/brandSales">-->
                     <input type="text" name="companyName" id="companyName" style="width: 90%">
                     <button type="button" id="btnBrand">검색</button>
-<!--                  </form>-->
                 </div>
               </div>
             </div>
@@ -70,7 +68,7 @@
             <div class="top2">
               <div class="frame-container">
                 <div class="vector-container">
-                  <img class="vector-icon2" alt="" src="/public/vector.svg" />
+                  <img class="vector-icon2" alt="" src="../public/vector.svg" />
 
                   <div class="menu2" id="mainButton">MENU</div>
                 </div>
@@ -82,7 +80,7 @@
                           <img
                             class="administration-1-icon2"
                             alt=""
-                            src="/public/administration-1@2x.png"
+                            src="../public/administration-1@2x.png"
                           />
 
                           <div class="promotion12">재고 관리</div>
@@ -91,7 +89,7 @@
                       <img
                         class="arrow-chevron-down-icon10"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -104,7 +102,7 @@
                           <img
                             class="administration-1-icon2"
                             alt=""
-                            src="/public/promotion-1@2x.png"
+                            src="../public/promotion-1@2x.png"
                           />
 
                           <div class="promotion12">제품 관리</div>
@@ -113,7 +111,7 @@
                       <img
                         class="arrow-chevron-down-icon10"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -126,7 +124,7 @@
                           <img
                             class="administration-1-icon2"
                             alt=""
-                            src="/public/customerloyalty-1@2x.png"
+                            src="../public/customerloyalty-1@2x.png"
                           />
 
                           <div class="promotion12">입고</div>
@@ -135,7 +133,7 @@
                       <img
                         class="arrow-chevron-down-icon10"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -148,7 +146,7 @@
                           <img
                             class="administration-1-icon2"
                             alt=""
-                            src="/public/productmanagement-1@2x.png"
+                            src="../public/productmanagement-1@2x.png"
                           />
 
                           <div class="promotion12">출고</div>
@@ -157,7 +155,7 @@
                       <img
                         class="arrow-chevron-down-icon10"
                         alt=""
-                        src="/public/arrowchevrondown.svg"
+                        src="../public/arrowchevrondown.svg"
                       />
                     </div>
                   </div>
@@ -172,7 +170,7 @@
                               <img
                                 class="administration-1-icon2"
                                 alt=""
-                                src="/public/order-2@2x.png"
+                                src="../public/order-2@2x.png"
                               />
 
                               <div class="promotion12">Orders</div>
@@ -181,7 +179,7 @@
                           <img
                             class="arrow-chevron-down-icon10"
                             alt=""
-                            src="/public/arrowchevrondown.svg"
+                            src="../public/arrowchevrondown.svg"
                           />
                         </div>
                       </div>
@@ -203,7 +201,7 @@
        const companyName = $("#companyName").val();
        console.log(companyName);
        $.ajax({
-         url: "brandSales",
+         url: "/brandSales",
          type: "get",
          data: {companyName},
          success: function (data) {
