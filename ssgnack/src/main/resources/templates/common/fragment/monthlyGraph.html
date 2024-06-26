@@ -19,6 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
     />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -45,7 +46,7 @@
         <div class="button-popper-element-butt">
           <div class="margin">
             <div class="container8">
-              <input type="text" name="datefilter" value="" />
+              <input type="text" name="daterange" />
             </div>
           </div>
           <div class="container9"></div>
@@ -184,30 +185,75 @@
     <!-- Chart.js 스크립트 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- 바 형태의 그래프 스크립트 -->
-    <script src="/monthly_chart.js"></script>
+<!--    <script src="/monthly_chart.js"></script>-->
     <script>
       document.getElementById("mainButton").addEventListener("click", function() {
         window.location.href = "/main";
       });
-  </script>
-    <script type="text/javascript">
+    </script>
+    <script>
       $(function() {
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        }, function (start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+          $.ajax({
+            url: "monthlySales",
+            type: "get",
+            data: {
+              start: start.format('YYYY-MM-DD'),
+              end: end.format('YYYY-MM-DD')
+            },
+            success: function (data) {
+              console.log(data);
 
-        $('input[name="datefilter"]').daterangepicker({
-          autoUpdateInput: false,
-          locale: {
-            cancelLabel: 'Clear'
-          }
+              var ctx = document.getElementById("monthlyChart").getContext("2d");
+
+              var barChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: data.totalMonth,
+                  datasets: [
+                    {
+                      label: "매출",
+                      data: data.totalSale,
+                      backgroundColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "순이익",
+                      data: data.totalIncome,
+                      backgroundColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              });
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
         });
-
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-          $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-        });
-
-        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-          $(this).val('');
-        });
-
       });
     </script>
   </body>
