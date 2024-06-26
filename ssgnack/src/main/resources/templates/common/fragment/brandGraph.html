@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -35,7 +35,7 @@
       <div class="item"></div>
       <div class="rectangle-parent2">
         <div class="group-child3"></div>
-        <b class="b5" id="loginButton">회원가입/로그인</b>
+        <a class="b5" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
       </div>
       <div class="div5">
         <div class="form1">
@@ -50,7 +50,12 @@
                 <div class="div6">검색</div>
               </div>
               <div class="container6">
-                <div class="container7"></div>
+                <div class="container7">
+                  <form action="/brandSales">
+                    <input type="text" name="companyName" id="companyName" style="width: 90%">
+                    <button type="submit">검색</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -195,10 +200,5 @@
         window.location.href = "/main";
       });
   </script>
-    <script>
-      document.getElementById("loginButton").addEventListener("click", function() {
-        window.location.href = "login.html";
-      });
-    </script>
   </body>
 </html>
