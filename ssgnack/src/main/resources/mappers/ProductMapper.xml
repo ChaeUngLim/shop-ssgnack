@@ -3,5 +3,72 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssgnack.product.model.dao.ProductMapper">
+    <resultMap id="productMainMap" type="com.ssgnack.product.model.dto.ProductDTO">
+        <id property="productName" column="PRODUCT_NAME"/>
+        <result property="company" column="COMPANY_NAME"/>
+        <result property="category" column="CATEGORY_NAME"/>
+        <result property="price" column="PRICE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>
+    <resultMap id="categoryMap" type="com.ssgnack.product.model.dto.CategoryDTO">
+        <id property="categoryId" column="CATEGORY_ID"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+    <select id="selectProductList" resultMap="productMainMap">
+        SELECT
+               PRODUCT_NAME,
+               ( SELECT COMPANY_NAME FROM COMPANY B WHERE A.company_id = B.company_id) AS COMPANY_NAME,
+               ( SELECT CATEGORY_NAME FROM CATEGORY B WHERE A.CATEGORY_ID = B.CATEGORY_ID) AS CATEGORY_NAME,
+               CONCAT(FORMAT(PRICE,0), '원') AS PRICE,
+               IF(orderable_status = 'Y','판매중','판매중지') AS ORDERABLE_STATUS
+          FROM PRODUCT A
+         WHERE PRODUCT_NAME LIKE CONCAT('%',#{ productName },'%')
+         ORDER BY PRODUCT_NAME
+    </select>
+    <select id="companyIsThere" resultType="Integer">
+        SELECT COMPANY_ID FROM COMPANY WHERE COMPANY_NAME = #{ company }
+    </select>
+    <select id="duplicateCheckName" resultType="string">
+        SELECT A.PRODUCT_NAME
+          FROM PRODUCT A
+         WHERE A.PRODUCT_NAME = #{ productName }
+           AND A.COMPANY_ID = ( SELECT B.COMPANY_ID
+                                  FROM COMPANY B
+                                 WHERE B.COMPANY_NAME = #{ company } )
+    </select>
+    <select id="selectCategoryList" resultMap="categoryMap">
+        SELECT *
+          FROM CATEGORY
+    </select>
 
+    <insert id="insertProduct">
+        INSERT INTO PRODUCT
+        (
+        PRODUCT_NAME,
+        PRICE,
+        COMPANY_ID,
+        CATEGORY_ID,
+        ORDERABLE_STATUS,
+        FILE_NAME
+        )
+        VALUES
+        (
+        #{ productName },
+        #{ price },
+        ( SELECT COMPANY_ID FROM COMPANY WHERE COMPANY_NAME = #{ company } ),
+        #{ category },
+        #{ orderableStatus },
+        #{ fileName }
+        )
+    </insert>
+    <insert id="insertCompany">
+        INSERT INTO COMPANY
+        (
+        COMPANY_NAME
+        )
+        VALUES
+        (
+        #{ company }
+        )
+    </insert>
 </mapper>
