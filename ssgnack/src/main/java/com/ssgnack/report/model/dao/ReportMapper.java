@@ -11,4 +11,5 @@ public interface ReportMapper {
     List<ReportDTO> totalSales();
     List<ReportDTO> productSales(String productName);
     List<ReportDTO> brandSales(String companyName);
+    List<ReportDTO> monthlySales(String start, String end);
 }

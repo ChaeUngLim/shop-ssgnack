@@ -1,13 +1,13 @@
 package com.ssgnack.report.model.service;
 
-import com.ssgnack.report.model.dto.ReportDTO;
-
-import java.util.List;
+import com.ssgnack.report.model.dto.ReportResDTO;
 
 public interface ReportService {
-    List<ReportDTO> totalSales();
+    ReportResDTO totalSales();
 
-    List<ReportDTO> productSales(String productName);
+    ReportResDTO productSales(String productName);
 
-    List<ReportDTO> brandSales(String companyName);
+    ReportResDTO brandSales(String companyName);
+
+    ReportResDTO monthlySales(String start, String end);
 }

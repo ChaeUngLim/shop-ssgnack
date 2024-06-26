@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div class="div">
@@ -37,7 +38,7 @@
                                                 <div class="left">
                                                     <img class="administration-1-icon" alt="" src="/main_img/administration-1@2x.png" />
                                                     <div class="promotion">
-                                                        <a href="/stock/list">재고 관리</a>
+                                                        <a href="/stock/list" style="text-decoration-line: none; color: white">재고 관리</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +135,53 @@
         <img class="date-today-icon" alt="" src="/main_img/date-today.svg" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/chart.js"></script>
+    <script th:inline="javascript">
+
+            $.ajax({
+                url: "totalSales",
+                type: "get",
+                data: {},
+                success: function (data) {
+                    console.log(data);
+
+                    var ctx = document.getElementById('salesChart').getContext('2d');
+                    var salesChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: data.totalMonth,
+                            datasets: [
+                                {
+                                    label: '매출',
+                                    data: data.totalsale,
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1,
+                                    fill: false
+                                },
+                                {
+                                    label: '순이익',
+                                    data: data.totalIncome,
+                                    borderColor: 'rgba(255, 159, 64, 1)',
+                                    borderWidth: 1,
+                                    fill: false
+                                },
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+        });
+
+    </script>
     <script>
         document.getElementById("mainButton").addEventListener("click", function() {
             window.location.href = "/main";
