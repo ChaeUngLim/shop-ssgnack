@@ -8,4 +8,6 @@ public interface ReportService {
     ReportResDTO productSales(String productName);
 
     ReportResDTO brandSales(String companyName);
+
+    ReportResDTO monthlySales(String start, String end);
 }

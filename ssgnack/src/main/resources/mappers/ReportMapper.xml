@@ -52,4 +52,19 @@
         GROUP BY p.PRODUCT_NAME;
     </select>
 
+    <select id="monthlySales" resultMap="reportResultMap">
+        SELECT
+            DATE_FORMAT(o.out_date,'%Y-%m') yearMonth
+            ,SUM(o.out_amt*p.PRICE) totalPrice
+            ,(SUM(o.out_amt*p.PRICE))*0.4 totalIncome
+        FROM outbound o LEFT JOIN
+            product p on o.product_id = p.PRODUCT_ID
+        LEFT JOIN
+            product_temp t on p.PRODUCT_NAME = t.product_name
+        WHERE
+            o.status = 'Y'
+        AND o.out_date BETWEEN (#{start}) AND (#{end})
+        GROUP BY yearMonth;
+    </select>
+
 </mapper>

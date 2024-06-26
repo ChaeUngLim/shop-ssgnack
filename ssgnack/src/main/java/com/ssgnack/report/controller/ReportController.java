@@ -113,4 +113,21 @@ public class ReportController {
 
         return reportDTOList;
     }
+
+    /***
+     * 기간별 매출 현황
+     */
+    @GetMapping("/monthlySales")
+    @ResponseBody
+    public ReportResDTO monthlySales(Model model, @RequestParam(required = false) String start, @RequestParam(required = false) String end){
+        log.info("startDate {}", start);
+        log.info("endDate {}", end);
+        ReportResDTO reportDTOList = reportService.monthlySales(start,end);
+        System.out.println("reportDTOList.getTotalMonth() = " + reportDTOList.getTotalMonth());
+        System.out.println("reportDTOList.getTotalSale() = " + reportDTOList.getTotalSale());
+        System.out.println("reportDTOList.getTotalIncome() = " + reportDTOList.getTotalIncome());
+
+        return reportDTOList;
+    }
+
 }

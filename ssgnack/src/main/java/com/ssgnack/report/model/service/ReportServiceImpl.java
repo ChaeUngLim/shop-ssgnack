@@ -80,4 +80,25 @@ public class ReportServiceImpl implements ReportService{
         log.info(productNameList.toString());
         return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
     }
+
+    @Override
+    public ReportResDTO monthlySales(String start, String end) {
+        List<ReportDTO> reportDTOList = reportMapper.monthlySales(start, end);
+
+        List<Integer> totalSaleList = new ArrayList<>();
+        List<String> productNameList = new ArrayList<>();
+        List<String> totalMonthList = new ArrayList<>();
+        List<Integer> totalIncomeList = new ArrayList<>();
+
+        for (ReportDTO reportDTO : reportDTOList) {
+            totalSaleList.add(reportDTO.getTotalSale());
+            productNameList.add(reportDTO.getProductName());
+            totalMonthList.add(reportDTO.getTotalMonth());
+            totalIncomeList.add(reportDTO.getTotalIncome());
+
+        }
+
+        log.info(productNameList.toString());
+        return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
+    }
 }
