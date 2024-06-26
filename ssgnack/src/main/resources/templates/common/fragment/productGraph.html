@@ -18,6 +18,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
     />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <div class="div">
@@ -51,10 +52,10 @@
               <div class="container2">
                 <div class="container3">
                   <div>
-                    <form action="/productSales">
+<!--                    <form action="/productSales">-->
                       <input type="text" name="productName" id="productName" style="width: 90%">
-                      <button type="submit">검색</button>
-                    </form>
+                      <button type="button" id="btnSearch">검색</button>
+<!--                    </form>-->
                   </div>
                 </div>
               </div>
@@ -195,7 +196,68 @@
     <!-- Chart.js 스크립트 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- 바 형태의 그래프 스크립트 -->
-    <script src="/product_chart.js"></script>
+    <script th:inline="javascript">
+
+        $("#btnSearch").click(function () {
+          const productName = $("#productName").val();
+          console.log(productName);
+
+          $.ajax({
+            url: "productSales",
+            type: "get",
+            data: {productName},
+            success: function (data) {
+              console.log(data);
+
+              var ctx = document.getElementById("productChart").getContext("2d");
+
+              var barChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: data.totalMonth,
+                  datasets: [
+                    {
+                      label: "매출",
+                      data: data.totalSale,
+                      backgroundColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "순이익",
+                      data: data.totalIncome,
+                      backgroundColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              });
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
+        });
+
+    </script>
     <script>
       document.getElementById("mainButton").addEventListener("click", function() {
         window.location.href = "/main";
