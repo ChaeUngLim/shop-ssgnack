@@ -2,35 +2,82 @@ package com.ssgnack.report.model.service;
 
 import com.ssgnack.report.model.dao.ReportMapper;
 import com.ssgnack.report.model.dto.ReportDTO;
+import com.ssgnack.report.model.dto.ReportResDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class ReportServiceImpl implements ReportService{
 
     private final ReportMapper reportMapper;
 
-    public ReportServiceImpl(ReportMapper reportMapper) {
-        this.reportMapper = reportMapper;
+    @Override
+    public ReportResDTO totalSales() {
+        List<ReportDTO> reportDTOList = reportMapper.totalSales();
+
+        List<Integer> totalSaleList = new ArrayList<>();
+        List<String> productNameList = new ArrayList<>();
+        List<String> totalMonthList = new ArrayList<>();
+        List<Integer> totalIncomeList = new ArrayList<>();
+
+        for (ReportDTO reportDTO : reportDTOList) {
+            totalSaleList.add(reportDTO.getTotalSale());
+            productNameList.add(reportDTO.getProductName());
+            totalMonthList.add(reportDTO.getTotalMonth());
+            totalIncomeList.add(reportDTO.getTotalIncome());
+
+        }
+
+        return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
     }
 
     @Override
-    public List<ReportDTO> totalSales() {
-        log.info("totalSales : " + reportMapper.totalSales());
-        return reportMapper.totalSales();
+    public ReportResDTO productSales(String productName) {
+
+        List<ReportDTO> reportDTOList = reportMapper.productSales(productName);
+
+        List<Integer> totalSaleList = new ArrayList<>();
+        List<String> productNameList = new ArrayList<>();
+        List<String> totalMonthList = new ArrayList<>();
+        List<Integer> totalIncomeList = new ArrayList<>();
+
+        for (ReportDTO reportDTO : reportDTOList) {
+            totalSaleList.add(reportDTO.getTotalSale());
+            productNameList.add(reportDTO.getProductName());
+            totalMonthList.add(reportDTO.getTotalMonth());
+            totalIncomeList.add(reportDTO.getTotalIncome());
+
+        }
+
+        return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
     }
 
     @Override
-    public List<ReportDTO> productSales(String productName) {
+    public ReportResDTO brandSales(String companyName) {
+        List<ReportDTO> reportDTOList = reportMapper.brandSales(companyName);
 
-        return reportMapper.productSales(productName);
-    }
+        List<Integer> totalSaleList = new ArrayList<>();
+        List<String> productNameList = new ArrayList<>();
+        List<String> totalMonthList = new ArrayList<>();
+        List<Integer> totalIncomeList = new ArrayList<>();
 
-    @Override
-    public List<ReportDTO> brandSales(String companyName) {
-        return reportMapper.brandSales(companyName);
+        for (ReportDTO reportDTO : reportDTOList) {
+            totalSaleList.add(reportDTO.getTotalSale());
+            productNameList.add(reportDTO.getProductName());
+            totalMonthList.add(reportDTO.getTotalMonth());
+            totalIncomeList.add(reportDTO.getTotalIncome());
+
+        }
+
+        log.info(productNameList.toString());
+        return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
     }
 }

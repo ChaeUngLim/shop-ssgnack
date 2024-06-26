@@ -18,6 +18,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
     />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <div class="div4">
@@ -51,10 +52,10 @@
               </div>
               <div class="container6">
                 <div class="container7">
-                  <form action="/brandSales">
+<!--                  <form action="/brandSales">-->
                     <input type="text" name="companyName" id="companyName" style="width: 90%">
-                    <button type="submit">검색</button>
-                  </form>
+                    <button type="button" id="btnBrand">검색</button>
+<!--                  </form>-->
                 </div>
               </div>
             </div>
@@ -194,7 +195,67 @@
     <!-- Chart.js 스크립트 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- 바 형태의 그래프 스크립트 -->
-    <script src="/brand_chart.js"></script>
+    <script th:inline="javascript">
+
+     $("#btnBrand").click(function () {
+       const companyName = $("#companyName").val();
+       console.log(companyName);
+       $.ajax({
+         url: "brandSales",
+         type: "get",
+         data: {companyName},
+         success: function (data) {
+           console.log(data);
+
+           var ctx = document.getElementById("brandChart").getContext("2d");
+
+           var barChart = new Chart(ctx, {
+             type: "bar",
+             data: {
+               labels: data.productName,
+               datasets: [
+                 {
+                   label: "매출",
+                   data: data.totalSale,
+                   backgroundColor: [
+                     "rgba(54, 162, 235, 1)",
+                   ],
+                   borderColor: [
+                     "rgba(54, 162, 235, 1)",
+                   ],
+                   borderWidth: 1,
+                 },
+                 {
+                   label: "순이익",
+                   data: data.totalIncome,
+                   backgroundColor: [
+                     "rgba(255, 159, 64, 1)",
+                   ],
+                   borderColor: [
+                     "rgba(255, 159, 64, 1)",
+                   ],
+                   borderWidth: 1,
+                 },
+               ],
+             },
+             options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               scales: {
+                 y: {
+                   beginAtZero: true,
+                 },
+               },
+             },
+           });
+         },
+         error: function (error) {
+           console.log(error);
+         }
+       })
+     });
+
+    </script>
     <script>
       document.getElementById("mainButton").addEventListener("click", function() {
         window.location.href = "/main";

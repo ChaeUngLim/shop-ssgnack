@@ -19,9 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
     />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <div class="div7">
@@ -45,7 +43,7 @@
         <div class="button-popper-element-butt">
           <div class="margin">
             <div class="container8">
-              <input type="text" name="datefilter" value="" />
+              <input type="text" name="daterange" />
             </div>
           </div>
           <div class="container9"></div>
@@ -181,6 +179,9 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <!-- Chart.js 스크립트 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- 바 형태의 그래프 스크립트 -->
@@ -189,25 +190,14 @@
       document.getElementById("mainButton").addEventListener("click", function() {
         window.location.href = "/main";
       });
-  </script>
-    <script type="text/javascript">
+    </script>
+    <script>
       $(function() {
-
-        $('input[name="datefilter"]').daterangepicker({
-          autoUpdateInput: false,
-          locale: {
-            cancelLabel: 'Clear'
-          }
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        }, function(start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
-
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-          $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-        });
-
-        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-          $(this).val('');
-        });
-
       });
     </script>
   </body>
