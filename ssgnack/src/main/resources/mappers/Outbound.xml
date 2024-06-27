@@ -15,31 +15,31 @@
 
     <select id="findAllOrder" resultMap="outboundResultMap">
         SELECT
-            b.outbound_Id,
-            b.out_date,
-            b.out_amt,
-            b.status,
-            b.admin_id,
-            b.product_id,
-            b.user_id
+        b.outbound_Id,
+        b.out_date,
+        b.out_amt,
+        b.status,
+        b.admin_id,
+        b.product_id,
+        b.user_id
         FROM
         (SELECT
-            a.outbound_id,
-            a.out_date,
-            a.out_amt,
-            a.status,
-            a.admin_id,
-            a.product_id,
-            a.user_id
+        a.outbound_id,
+        a.out_date,
+        a.out_amt,
+        a.status,
+        a.admin_id,
+        a.product_id,
+        a.user_id
         FROM outbound a
         ORDER BY a.outbound_id,
-                a.out_date) b
+        a.out_date) b
         LIMIT #{startRow}, #{limit}
     </select>
 
     <select id="selectTotalCount" resultType="_int">
         SELECT
-            COUNT(*)
+        COUNT(*)
         FROM outbound
     </select>
 
@@ -58,5 +58,39 @@
 
     <select id="selectOutbound" resultMap="outboundResultMap">
         SELECT * FROM outbound WHERE OUTBOUND_ID = #{ outboundId }
+    </select>
+
+    <select id="selectTotalCountByStatus" resultType="_int">
+        SELECT COUNT(*) FROM outbound WHERE status = #{status}
+    </select>
+
+    <select id="findOrderByStatus" resultMap="outboundResultMap">
+        <!--        SELECT * FROM outbound WHERE status = #{status}-->
+        <!--        ORDER BY outbound_id-->
+        <!--        LIMIT #{selectCriteria.startRow}, #{selectCriteria.limit}-->
+
+        SELECT
+        b.outbound_Id,
+        b.out_date,
+        b.out_amt,
+        b.status,
+        b.admin_id,
+        b.product_id,
+        b.user_id
+        FROM
+        (SELECT
+        a.outbound_id,
+        a.out_date,
+        a.out_amt,
+        a.status,
+        a.admin_id,
+        a.product_id,
+        a.user_id
+        FROM outbound a
+        WHERE a.status = #{status}
+        ORDER BY a.outbound_id,
+        a.out_date
+        ) b
+        LIMIT #{selectCriteria.startRow}, #{selectCriteria.limit}
     </select>
 </mapper>

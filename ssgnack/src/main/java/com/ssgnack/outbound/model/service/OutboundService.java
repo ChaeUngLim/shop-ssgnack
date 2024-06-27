@@ -11,4 +11,8 @@ public interface OutboundService {
     List<OutboundDTO> findAllOrder(SelectCriteria selectCriteria);
 
     void registNewOrder(OutboundDTO newOrder);
+
+    int selectTotalCountByStatus(String status);
+
+    List<OutboundDTO> findOrderByStatus(String status, SelectCriteria selectCriteria);
 }
