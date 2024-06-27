@@ -20,29 +20,32 @@
                 crossorigin="anonymous"></script>
         <div class="div">
             <div class="group-child"></div>
-            <b class="ssgnack">SSGNACK</b>
+            <b class="ssgnack">
+                <a href="/main" style="text-decoration-line: none; color: black">SSGNACK</a>
+            </b>
             <b class="admin">Admin님 접속을 환영합니다.</b>
             <div class="rectangle-parent">
                 <div class="group-item">
                     <!-- Product Container Start-->
-                    <h3 class="insertHeader">상품 등록</h3><hr>
-                    <div class="mb-3 mx-3">
+                    <h3 class="insertHeader">상품 등록</h3>
+                    <hr>
+                    <div class="mb-2 mx-3">
                         <label for="productName" class="form-label">상품명</label>
                         <input type="text" class="form-control" id="productName" name="productName"
                                placeholder="ex) 먹태깡">
                     </div>
-                    <div class="mb-3 mx-3">
+                    <div class="mb-2 mx-3">
                         <label for="price" class="form-label">상품가격</label>
                         <input type="number" class="form-control" id="price" name="price"
                                placeholder="ex) 1500">
                     </div>
                     <div class="row">
-                        <div class="col md-3 mx-3">
+                        <div class="col mb-2 mx-3">
                             <label for="company" class="form-label">회사</label>
                             <input type="text" class="form-control" id="company" name="company"
                                    placeholder="ex) 농심">
                         </div>
-                        <div class="col md-3 mx-3">
+                        <div class="col mb-2 mx-3">
                             <label for="category" class="form-label">카테고리</label>
                             <select class="form-select" id="category" name="category">
                                 <option value="" selected>=== 카테고리를 선택하세요. ===</option>
@@ -53,13 +56,17 @@
                             </select>
                         </div>
                     </div>
-                    <div class="md-3 mx-3">
+                    <div class="mb-2 mx-3">
                         <label for="orderableStatus" class="form-label">판매여부</label>
                         <select class="form-select" id="orderableStatus" name="orderableStatus">
                             <option value="" selected>=== 판매여부를 선택하세요. ===</option>
                             <option value="Y">판매중</option>
                             <option value="N">판매중지</option>
                         </select>
+                    </div>
+                    <div class="mb-2 mx-3">
+                        <label for="fileUpload" class="form-label">상품 이미지</label>
+                        <input type="file" class="form-control" id="fileUpload" name="fileUpload">
                     </div>
                     <div class="rectangle-div" id="insertSubmit">
                         <b class="b1">등록 확인</b>
@@ -69,7 +76,7 @@
                 </div>
                 <div class="rectangle-group">
                     <div class="group-inner"></div>
-                    <b class="b">회원가입/로그인</b>
+                    <b class="b"><a href="/" style="text-decoration-line: none; color: black">로그아웃</a></b>
                 </div>
                 <div class="product-delete">
                     <div class="rectangle-div">
@@ -86,14 +93,6 @@
                         <b class="b1">상품 등록</b>
                     </div>
                 </div>
-                <div class="rectangle-parent2">
-                    <div class="group-child3"></div>
-                    <textarea class="b1" id="selectByName" placeholder="상풍명 검색"></textarea>
-                </div>
-                <div class="rectangle-parent3">
-                    <div class="group-child4"></div>
-                    <b class="b5">🔍</b>
-                </div>
             </div>
             <div class="navigation-drawer-wrapper">
                 <div class="navigation-drawer">
@@ -103,7 +102,9 @@
                                 <div class="vector-parent">
                                     <img class="vector-icon" alt="" th:src="@{/img/product/vector.svg}"/>
 
-                                    <div class="menu">MENU</div>
+                                    <div class="menu">
+                                        <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
+                                    </div>
                                 </div>
                                 <div class="productmanage">
                                     <div class="component-2variant3">
@@ -116,7 +117,10 @@
                                                             th:src="|@{/img/product/administration-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">재고 관리</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/list" class="promotion"
+                                                           style="text-decoration-line: none; color: white">재고 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
@@ -137,7 +141,10 @@
                                                             th:src="|@{/img/product/promotion-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">제품 관리</div>
+                                                    <div class="promotion">
+                                                        <a href="/product/main" class="promotion"
+                                                           style="text-decoration-line: none; color: white">제품 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
@@ -159,7 +166,10 @@
                                                             th:src="|@{/img/product/customerloyalty-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">입고</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/inbound" class="promotion"
+                                                           style="text-decoration-line: none; color: white">입고</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
@@ -181,7 +191,10 @@
                                                             th:src="|@{/img/product/productmanagement-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">출고</div>
+                                                    <div class="promotion">
+                                                        <a href="/outbound/regist" class="promotion"
+                                                           style="text-decoration-line: none; color: white">출고</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
@@ -189,32 +202,6 @@
                                                     alt=""
                                                     th:src="|@{/img/product/arrowchevrondown.svg}|"
                                             />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="orders">
-                                    <div class="ordersvariant1">
-                                        <div class="productmanage">
-                                            <div class="component-2variant3">
-                                                <div class="nav-item">
-                                                    <div class="productmanage">
-                                                        <div class="left">
-                                                            <img
-                                                                    class="administration-1-icon"
-                                                                    alt=""
-                                                                    th:src="|@{/img/product/order-2@2x.png}|"
-                                                            />
-
-                                                            <div class="promotion">Orders</div>
-                                                        </div>
-                                                    </div>
-                                                    <img
-                                                            class="arrow-chevron-down-icon"
-                                                            alt=""
-                                                            th:src="|@{/img/product/arrowchevrondown.svg}|"
-                                                    />
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -10,6 +10,7 @@
         <result property="category" column="CATEGORY_NAME"/>
         <result property="price" column="PRICE"/>
         <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        <result property="fileName" column="FILE_NAME"/>
     </resultMap>
     <resultMap id="categoryMap" type="com.ssgnack.product.model.dto.CategoryDTO">
         <id property="categoryId" column="CATEGORY_ID"/>
@@ -26,7 +27,8 @@
                ( SELECT COMPANY_NAME FROM COMPANY B WHERE A.company_id = B.company_id) AS COMPANY_NAME,
                ( SELECT CATEGORY_NAME FROM CATEGORY B WHERE A.CATEGORY_ID = B.CATEGORY_ID) AS CATEGORY_NAME,
                CONCAT(FORMAT(PRICE,0), '원') AS PRICE,
-               IF(orderable_status = 'Y','판매중','판매중지') AS ORDERABLE_STATUS
+               IF(orderable_status = 'Y','판매중','판매중지') AS ORDERABLE_STATUS,
+               CONCAT('http://ssg-java2.iptime.org/ssgnack/',FILE_NAME) AS FILE_NAME
           FROM PRODUCT A
          WHERE PRODUCT_NAME LIKE CONCAT('%',#{ productName },'%')
          ORDER BY PRODUCT_NAME
@@ -127,4 +129,12 @@
     <delete id="deleteStock">
         DELETE FROM STOCK WHERE PRODUCT_ID = #{ productId }
     </delete>
+    <update id="fileNameUpdate">
+        UPDATE PRODUCT SET
+        FILE_NAME = #{fileName}
+        WHERE PRODUCT_ID = #{productId}
+    </update>
+    <select id="selectMaxProductId" resultType="_int">
+        SELECT MAX(PRODUCT_ID) FROM PRODUCT
+    </select>
 </mapper>

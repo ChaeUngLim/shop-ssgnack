@@ -52,11 +52,30 @@ $(document).ready(function () {
             type: "post",
             contentType: "application/json",
             data: JSON.stringify(product),
-            success: function (data) {
+            success: function (insertData) {
+                let fileInput = $("#fileUpload")[0];
+                let file = fileInput.files[0];
 
-                alert(data.msg);
+                if(file) {
+                    let formData = new FormData();
+                    formData.append("file",file);
 
-                window.location.href = data.returnURL;
+                    $.ajax({
+                        url: "/ftp/upload",
+                        type: "post",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (uploadData){
+                            alert(insertData.msg);
+                            window.location.href = insertData.returnURL;
+                        },
+                        error: function (uploadError){
+                            console.log(uploadError);
+                            alert("File upload failed!");
+                        }
+                    });
+                }
             },
             error: function (error) {
                 console.log(error);
@@ -72,6 +91,7 @@ $(document).ready(function () {
             category: $("#category").val(),
             orderableStatus: $("#orderableStatus").val()
         }
+        let file = $("#fileUpload").val();
 
         if (product.productName == ""
             || product.price == ""
@@ -89,7 +109,6 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(product),
             success: function (data) {
-
                 alert(data.msg);
 
                 window.location.href = data.returnURL;
