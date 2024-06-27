@@ -36,7 +36,7 @@ public class OutboundServiceImpl implements OutboundService {
      */
     @Override
     public List<OutboundDTO> findAllOrder(SelectCriteria selectCriteria) {
-        selectCriteria.setStartRow(selectCriteria.getStartRow() - 1);
+        selectCriteria.setStartRow(selectCriteria.getStartRow());
         return outboundMapper.findAllOrder(selectCriteria);
     }
 
@@ -59,5 +59,13 @@ public class OutboundServiceImpl implements OutboundService {
         outboundMapper.updateStatus(newOrder);
     }
 
+    @Override
+    public int selectTotalCountByStatus(String status) {
+        return outboundMapper.selectTotalCountByStatus(status);
+    }
 
+    @Override
+    public List<OutboundDTO> findOrderByStatus(String status, SelectCriteria selectCriteria) {
+        return outboundMapper.findOrderByStatus(status, selectCriteria);
+    }
 }

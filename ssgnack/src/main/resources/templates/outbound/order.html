@@ -24,6 +24,16 @@
                 margin-top: 30px;
             }
         </style>
+
+        <script>
+            function handleRadioClick(event){
+                if(event.target.value === 'viewAll'){
+                    window.location.href = '/outbound/order';
+                } else if(event.target.value === 'viewN'){
+                    window.location.href = '/outbound/order?status=N';
+                }
+            }
+        </script>
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -70,14 +80,14 @@
                         <div class="pagingArea" align="center">
                             <!-- 맨 앞으로 이동 버튼 -->
                             <button
-                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.startPage}}| + '\''"
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.startPage}}| + '&status=' + |@{${status}}| + '\''"
                                     th:disabled="${selectCriteria.pageNo == 1}"
                             >
                                 <<
                             </button>
                             <!-- 이전 페이지 버튼 -->
                             <button
-                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo - 1}}| + '\''"
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo - 1}}| + '&status=' + |@{${status}}| + '\''"
                                     th:disabled="${selectCriteria.pageNo == 1}"
                             >
                                 <
@@ -87,21 +97,21 @@
                                     th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
                                 <button
                                         th:text="${ page }"
-                                        th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${page}}| + '\''"
+                                        th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${page}}| + '&status=' + |@{${status}}| + '\''"
                                         th:disabled="${ selectCriteria.pageNo eq page }">
                                 </button>
                             </th:block>
 
                             <!-- 다음 페이지 버튼 -->
                             <button
-                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo + 1}}| + '\''"
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo + 1}}| + '&status=' + |@{${status}}| + '\''"
                                     th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
                             >
                                 >
                             </button>
                             <!-- 마지막 페이지로 이동 버튼 -->
                             <button
-                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.maxPage}}| + '\''"
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.maxPage}}| + '&status=' + |@{${status}}| + '\''"
                                     th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
                             >
                                 >>
@@ -125,8 +135,10 @@
 <!--                    <b class="b2">🔍</b>-->
 <!--                </div>-->
                 <div class="rectangle-container">
-                    <input type="radio" class="view-button1" name="button" value="viewAll">
-                    <input type="radio" class="view-button2" name="button" value="viewN">
+                    <input type="radio" id="viewAll" name="button" value="viewAll" onclick="handleRadioClick(event)">
+                    <label for="viewAll">모든 주문서 보기</label><br>
+                    <input type="radio" id="viewN" name="button" value="viewN" onclick="handleRadioClick(event)">
+                    <label for="viewN">출고할 주문서 보기</label>
                 </div>
             </div>
             <div class="navigation-drawer-wrapper">
