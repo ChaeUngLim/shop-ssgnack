@@ -25,7 +25,9 @@ public class OutboundController {
 
     // 주문서 조회
     @GetMapping("/order")
-    public String findOrderList(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int pageNo) {
+    public String findOrderList(Model model,
+                                @RequestParam(value = "currentPage", defaultValue = "1") int pageNo,
+                                @RequestParam(value="status", required = false)String status) {
 
         log.info("[OutboundController] pageNo: {}", pageNo);
         int totalCount = outboundService.selectTotalCount();
@@ -38,9 +40,23 @@ public class OutboundController {
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 
         List<OutboundDTO> orderList = outboundService.findAllOrder(selectCriteria);
+
+        // 라디오 버튼에 따른 창 변경
+        if(status != null && status.equals("N")) {
+            totalCount = outboundService.selectTotalCountByStatus("N");
+            selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
+            orderList = outboundService.findOrderByStatus("N", selectCriteria);
+        } else{
+            totalCount = outboundService.selectTotalCount();
+            selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
+            orderList = outboundService.findAllOrder(selectCriteria);
+        }
+
         log.info("[OutboundController] Order list: {}", orderList);
+
         model.addAttribute("orderList", orderList);
         model.addAttribute("selectCriteria", selectCriteria);
+        model.addAttribute("status", status);
 
         return "outbound/order";
     }
