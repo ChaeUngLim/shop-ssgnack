@@ -32,7 +32,9 @@
         <div class="div">
             <div class="rectangle-parent">
                 <div class="group-child"></div>
-                <b class="ssgnack">SSGNACK</b>
+                <b class="ssgnack">
+                    <a href="/main" style="text-decoration-line: none; color: black">SSGNACK</a>
+                </b>
                 <b class="admin">Admin님 접속을 환영합니다.</b>
                 <div class="group-item">
                     <div class="center">
@@ -107,7 +109,7 @@
                 <!--        <b class="stock">재고 조회(stock 테이블)</b>-->
                 <div class="rectangle-group">
                     <div class="group-inner"></div>
-                    <b class="b">로그아웃</b>
+                    <a class="b" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
                     <div class="frame-div"></div>
                 </div>
                 <div class="rectangle-container">
@@ -125,9 +127,11 @@
                         <div class="top">
                             <div class="frame-parent">
                                 <div class="vector-parent">
-                                    <img class="vector-icon" alt="" src="./public/vector.svg"/>
+                                    <img class="vector-icon" alt="" th:src="@{/img/product/vector.svg}"/>
 
-                                    <div class="menu">MENU</div>
+                                    <div class="menu">
+                                        <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
+                                    </div>
                                 </div>
                                 <div class="productmanage">
                                     <div class="component-2variant3">
@@ -137,16 +141,18 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            src="./public/administration-1@2x.png"
+                                                            th:src="|@{/img/product/administration-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">재고 관리</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/list" class="promotion" style="text-decoration-line: none; color: white">재고 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    src="./public/arrowchevrondown.svg"
+                                                    th:src="@{/img/product/arrowchevrondown.svg}"
                                             />
                                         </div>
                                     </div>
@@ -159,16 +165,18 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            src="./public/promotion-1@2x.png"
+                                                            th:src="|@{/img/product/promotion-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">제품 관리</div>
+                                                    <div class="promotion">
+                                                        <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    src="./public/arrowchevrondown.svg"
+                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
                                             />
                                         </div>
                                     </div>
@@ -181,16 +189,18 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            src="./public/customerloyalty-1@2x.png"
+                                                            th:src="|@{/img/product/customerloyalty-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">입고</div>
+                                                    <div class="promotion">
+                                                        <a href="/stock/inbound" class="promotion" style="text-decoration-line: none; color: white">입고</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    src="./public/arrowchevrondown.svg"
+                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
                                             />
                                         </div>
                                     </div>
@@ -203,16 +213,18 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            src="./public/productmanagement-1@2x.png"
+                                                            th:src="|@{/img/product/productmanagement-1@2x.png}|"
                                                     />
 
-                                                    <div class="promotion">출고</div>
+                                                    <div class="promotion">
+                                                        <a href="/outbound/regist" class="promotion" style="text-decoration-line: none; color: white">출고</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    src="./public/arrowchevrondown.svg"
+                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
                                             />
                                         </div>
                                     </div>
@@ -227,7 +239,7 @@
                                                             <img
                                                                     class="administration-1-icon"
                                                                     alt=""
-                                                                    src="./public/order-2@2x.png"
+                                                                    th:src="|@{/img/product/productmanagement-2@2x.png}|"
                                                             />
 
                                                             <div class="promotion">Orders</div>
@@ -236,7 +248,7 @@
                                                     <img
                                                             class="arrow-chevron-down-icon"
                                                             alt=""
-                                                            src="./public/arrowchevrondown.svg"
+                                                            th:src="|@{/img/product/arrowchevrondown.svg}|"
                                                     />
                                                 </div>
                                             </div>
