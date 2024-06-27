@@ -102,9 +102,12 @@
   height: 46.1px;
 }
 .rectangle-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
   position: absolute;
   top: 759px;
-  left: 996px;
+  left: 1050px;
   width: 204px;
   height: 61px;
   font-size: var(--font-size-5xl);
@@ -268,7 +271,7 @@
 }
 .navigation-drawer {
   position: absolute;
-  top: 0;
+  top: 30px;
   left: 0;
   border-radius: var(--br-7xl) 0 0 var(--br-8xl);
   background-color: var(--color-royalblue);

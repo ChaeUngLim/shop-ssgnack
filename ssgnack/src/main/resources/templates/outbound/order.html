@@ -23,13 +23,72 @@
             .sub-title {
                 margin-top: 30px;
             }
+
+            .sub-title {
+                margin-top: 30px;
+            }
+
+            .radio-group {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .radio-label {
+                position: relative;
+                padding-left: 35px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .radio-label input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .radio-checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #eee;
+                border-radius: 50%;
+                border: 2px solid #333;
+            }
+
+            .radio-label:hover input ~ .radio-checkmark {
+                background-color: #ccc;
+            }
+
+            .radio-label input:checked ~ .radio-checkmark {
+                background-color: #2196F3;
+                border-color: #2196F3;
+            }
+
+            .radio-checkmark:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: white;
+            }
+
         </style>
 
         <script>
-            function handleRadioClick(event){
-                if(event.target.value === 'viewAll'){
+            function handleRadioClick(event) {
+                if (event.target.value === 'viewAll') {
                     window.location.href = '/outbound/order';
-                } else if(event.target.value === 'viewN'){
+                } else if (event.target.value === 'viewN') {
                     window.location.href = '/outbound/order?status=N';
                 }
             }
@@ -126,140 +185,150 @@
                     <b class="b">로그아웃</b>
                     <div class="frame-div"></div>
                 </div>
-<!--                <div class="rectangle-container">-->
-<!--                    <div class="rectangle-div"></div>-->
-<!--                    <b class="b1">상품 검색</b>-->
-<!--                </div>-->
-<!--                <div class="group-div">-->
-<!--                    <div class="group-child1"></div>-->
-<!--                    <b class="b2">🔍</b>-->
-<!--                </div>-->
                 <div class="rectangle-container">
-                    <input type="radio" id="viewAll" name="button" value="viewAll" th:checked="${status == null or status != 'N'}" onclick="handleRadioClick(event)">
-                    <label for="viewAll">모든 주문서 보기</label><br>
-                    <input type="radio" id="viewN" name="button" value="viewN" th:checked="${status == 'N'}" onclick="handleRadioClick(event)">
-                    <label for="viewN">출고할 주문서 보기</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="button" value="viewAll"
+                                   th:checked="${status == null or status != 'N'}"
+                                   onclick="location.href='/outbound/order?status=viewAll'">
+                            <span class="radio-checkmark"></span>
+                            전체 주문서 보기
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="button" value="viewN"
+                                   th:checked="${status == 'N'}" onclick="location.href='/outbound/order?status=N'">
+                            <span class="radio-checkmark"></span>
+                            출고할 주문서 보기
+                        </label>
+                        <!--                <div class="rectangle-container">-->
+                        <!--                    <input type="radio" id="viewAll" name="button" value="viewAll" th:checked="${status == null or status != 'N'}" onclick="handleRadioClick(event)">-->
+                        <!--                    <label for="viewAll">모든 주문서 보기</label><br>-->
+                        <!--                    <input type="radio" id="viewN" name="button" value="viewN" th:checked="${status == 'N'}" onclick="handleRadioClick(event)">-->
+                        <!--                    <label for="viewN">출고할 주문서 보기</label>-->
+                        <!--                </div>-->
+
+                    </div>
                 </div>
-            </div>
-            <div class="navigation-drawer-wrapper">
-                <div class="navigation-drawer">
-                    <div class="top-wrapper">
-                        <div class="top">
-                            <div class="frame-parent">
-                                <div class="vector-parent">
-                                    <img class="vector-icon" alt="" src="./public/vector.svg"/>
+                <div class="navigation-drawer-wrapper">
+                    <div class="navigation-drawer">
+                        <div class="top-wrapper">
+                            <div class="top">
+                                <div class="frame-parent">
+                                    <div class="vector-parent">
+                                        <img class="vector-icon" alt="" src="./public/vector.svg"/>
 
-                                    <div class="menu">MENU</div>
-                                </div>
-                                <div class="productmanage">
-                                    <div class="component-2variant3">
-                                        <div class="nav-item">
-                                            <div class="productmanage">
-                                                <div class="left">
-                                                    <img
-                                                            class="administration-1-icon"
-                                                            alt=""
-                                                            src="./public/administration-1@2x.png"
-                                                    />
-
-                                                    <div class="promotion">재고 관리</div>
-                                                </div>
-                                            </div>
-                                            <img
-                                                    class="arrow-chevron-down-icon"
-                                                    alt=""
-                                                    src="./public/arrowchevrondown.svg"
-                                            />
-                                        </div>
+                                        <div class="menu">MENU</div>
                                     </div>
-                                </div>
-                                <div class="productmanage">
-                                    <div class="component-2variant3">
-                                        <div class="nav-item">
-                                            <div class="productmanage">
-                                                <div class="left">
-                                                    <img
-                                                            class="administration-1-icon"
-                                                            alt=""
-                                                            src="./public/promotion-1@2x.png"
-                                                    />
+                                    <div class="productmanage">
+                                        <div class="component-2variant3">
+                                            <div class="nav-item">
+                                                <div class="productmanage">
+                                                    <div class="left">
+                                                        <img
+                                                                class="administration-1-icon"
+                                                                alt=""
+                                                                src="./public/administration-1@2x.png"
+                                                        />
 
-                                                    <div class="promotion">제품 관리</div>
-                                                </div>
-                                            </div>
-                                            <img
-                                                    class="arrow-chevron-down-icon"
-                                                    alt=""
-                                                    src="./public/arrowchevrondown.svg"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="productmanage">
-                                    <div class="component-2variant3">
-                                        <div class="nav-item">
-                                            <div class="productmanage">
-                                                <div class="left">
-                                                    <img
-                                                            class="administration-1-icon"
-                                                            alt=""
-                                                            src="./public/customerloyalty-1@2x.png"
-                                                    />
-
-                                                    <div class="promotion">입고</div>
-                                                </div>
-                                            </div>
-                                            <img
-                                                    class="arrow-chevron-down-icon"
-                                                    alt=""
-                                                    src="./public/arrowchevrondown.svg"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="productmanage">
-                                    <div class="component-2variant3">
-                                        <div class="nav-item">
-                                            <div class="productmanage">
-                                                <div class="left">
-                                                    <img
-                                                            class="administration-1-icon"
-                                                            alt=""
-                                                            src="./public/productmanagement-1@2x.png"
-                                                    />
-
-                                                    <div class="promotion">출고</div>
-                                                </div>
-                                            </div>
-                                            <img
-                                                    class="arrow-chevron-down-icon"
-                                                    alt=""
-                                                    src="./public/arrowchevrondown.svg"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="orders">
-                                    <div class="ordersvariant1">
-                                        <div class="productmanage">
-                                            <div class="component-2variant3">
-                                                <div class="nav-item">
-                                                    <div class="productmanage">
-                                                        <div class="left">
-                                                            <img
-                                                                    class="administration-1-icon"
-                                                                    alt=""
-                                                                    src="./public/order-2@2x.png"
-                                                            />
-
-                                                            <div class="promotion">Orders</div>
-                                                        </div>
+                                                        <div class="promotion">재고 관리</div>
                                                     </div>
-                                                    <img
-                                                            class="arrow-chevron-down-icon"
-                                                            alt=""
-                                                            src="./public/arrowchevrondown.svg"
-                                                    />
+                                                </div>
+                                                <img
+                                                        class="arrow-chevron-down-icon"
+                                                        alt=""
+                                                        src="./public/arrowchevrondown.svg"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productmanage">
+                                        <div class="component-2variant3">
+                                            <div class="nav-item">
+                                                <div class="productmanage">
+                                                    <div class="left">
+                                                        <img
+                                                                class="administration-1-icon"
+                                                                alt=""
+                                                                src="./public/promotion-1@2x.png"
+                                                        />
+
+                                                        <div class="promotion">제품 관리</div>
+                                                    </div>
+                                                </div>
+                                                <img
+                                                        class="arrow-chevron-down-icon"
+                                                        alt=""
+                                                        src="./public/arrowchevrondown.svg"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productmanage">
+                                        <div class="component-2variant3">
+                                            <div class="nav-item">
+                                                <div class="productmanage">
+                                                    <div class="left">
+                                                        <img
+                                                                class="administration-1-icon"
+                                                                alt=""
+                                                                src="./public/customerloyalty-1@2x.png"
+                                                        />
+
+                                                        <div class="promotion">입고</div>
+                                                    </div>
+                                                </div>
+                                                <img
+                                                        class="arrow-chevron-down-icon"
+                                                        alt=""
+                                                        src="./public/arrowchevrondown.svg"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productmanage">
+                                        <div class="component-2variant3">
+                                            <div class="nav-item">
+                                                <div class="productmanage">
+                                                    <div class="left">
+                                                        <img
+                                                                class="administration-1-icon"
+                                                                alt=""
+                                                                src="./public/productmanagement-1@2x.png"
+                                                        />
+
+                                                        <div class="promotion">출고</div>
+                                                    </div>
+                                                </div>
+                                                <img
+                                                        class="arrow-chevron-down-icon"
+                                                        alt=""
+                                                        src="./public/arrowchevrondown.svg"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="orders">
+                                        <div class="ordersvariant1">
+                                            <div class="productmanage">
+                                                <div class="component-2variant3">
+                                                    <div class="nav-item">
+                                                        <div class="productmanage">
+                                                            <div class="left">
+                                                                <img
+                                                                        class="administration-1-icon"
+                                                                        alt=""
+                                                                        src="./public/order-2@2x.png"
+                                                                />
+
+                                                                <div class="promotion">Orders</div>
+                                                            </div>
+                                                        </div>
+                                                        <img
+                                                                class="arrow-chevron-down-icon"
+                                                                alt=""
+                                                                src="./public/arrowchevrondown.svg"
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
