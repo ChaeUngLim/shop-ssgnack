@@ -18,4 +18,6 @@ public interface ProductService {
     int updateProduct(ProductDTO productDTO);
 
     int deleteProduct(int productId);
+
+    void fileNameUpdate(String fileName);
 }

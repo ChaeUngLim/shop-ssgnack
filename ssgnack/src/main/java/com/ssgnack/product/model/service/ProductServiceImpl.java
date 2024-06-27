@@ -120,4 +120,10 @@ public class ProductServiceImpl implements ProductService {
 
         return 0;
     }
+
+    @Override
+    public void fileNameUpdate(String fileName) {
+        int productId = mapper.selectMaxProductId();
+        mapper.fileNameUpdate(fileName, productId);
+    }
 }
