@@ -38,7 +38,7 @@
 
 .ssgnack {
   top: 0;
-  left: 39px;
+  left: 10px;
   font-size: var(--font-size-21xl);
   width: 204.3px;
   height: 56.2px;
@@ -341,7 +341,7 @@
   position: absolute;
   top: 120px; /* Adjust top value as needed */
   left: 260px; /* Align with .b class left position */
-  width: 75%; /* Adjust width as needed */
+  width: 70%; /* Adjust width as needed */
   margin-top: 30px;
   background: #f9f9f9;
   padding: 20px;

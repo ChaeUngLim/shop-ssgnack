@@ -23,7 +23,7 @@ public class AdminController {
     /**
      * 로그인 페이지 이동
      */
-    @GetMapping("/login")
+    @GetMapping({"/login"})
     public String login(Model model){
         log.info("여기여기 login 페이지");
 
