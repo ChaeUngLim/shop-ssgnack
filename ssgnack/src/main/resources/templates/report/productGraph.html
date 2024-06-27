@@ -26,7 +26,9 @@
     <div class="div">
       <div class="rectangle-parent">
         <div class="group-child"></div>
-        <b class="ssgnack">SSGNACK</b>
+        <b class="ssgnack">
+          <a href="/main" style="text-decoration-line: none; color: black">SSGNACK</a>
+        </b>
         <b class="admin">Admin님 접속을 환영합니다.</b>
         <div class="group-item">
           <div class="chart-container">
@@ -71,7 +73,9 @@
                 <div class="vector-parent">
                   <img class="vector-icon" alt="" src="../public/vector.svg" />
 
-                  <div class="menu" id="mainButton">MENU</div>
+                  <div class="menu" id="mainButton">
+                    <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
+                  </div>
                 </div>
                 <div class="productmanage">
                   <div class="component-2variant3">
@@ -84,7 +88,9 @@
                             src="../public/administration-1@2x.png"
                           />
 
-                          <div class="promotion">재고 관리</div>
+                          <div class="promotion">
+                            <a href="/stock/list" style="text-decoration-line: none; color: white">재고 관리</a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -106,7 +112,9 @@
                             src="../public/promotion-1@2x.png"
                           />
 
-                          <div class="promotion">제품 관리</div>
+                          <div class="promotion">
+                            <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -128,7 +136,9 @@
                             src="../public/customerloyalty-1@2x.png"
                           />
 
-                          <div class="promotion">입고</div>
+                          <div class="promotion">
+                            <a href="/stock/inbound" style="text-decoration-line: none; color: white">입고</a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -150,7 +160,9 @@
                             src="../public/productmanagement-1@2x.png"
                           />
 
-                          <div class="promotion">출고</div>
+                          <div class="promotion">
+                            출고
+                          </div>
                         </div>
                       </div>
                       <img
@@ -258,10 +270,5 @@
         });
 
     </script>
-    <script>
-      document.getElementById("mainButton").addEventListener("click", function() {
-        window.location.href = "/main";
-      });
-  </script>
   </body>
 </html>
