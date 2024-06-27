@@ -37,10 +37,19 @@
         </div>
         <b class="b">상품별 매출 보고</b>
       </div>
-      <div class="child"></div>
+      <div class="child">
+        <div class="movebrand">
+          <a th:href="@{/report/brandGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            브랜드별 매출 |
+          </a>
+          <a th:href="@{/report/monthlyGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            기간별 매출
+          </a>
+        </div>
+      </div>
       <div class="rectangle-group">
         <div class="group-inner"></div>
-        <a class="b1" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+        <a class="b1" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">로그아웃</a>
       </div>
       <div class="div1">
         <div class="form">
@@ -54,10 +63,10 @@
               <div class="container1">
               </div>
               <div class="container2">
-                <div class="container3">
+                  <input type="text" name="productName" id="productName" style="width: 90%">
+                  <button type="button" id="btnSearch">검색</button>
+                  <div class="container3">
                   <div>
-                      <input type="text" name="productName" id="productName" style="width: 90%">
-                      <button type="button" id="btnSearch">검색</button>
                   </div>
                 </div>
               </div>
@@ -229,7 +238,7 @@
                   labels: data.totalMonth,
                   datasets: [
                     {
-                      label: "매출",
+                      label: "매출(단위:원)",
                       data: data.totalSale,
                       backgroundColor: [
                         "rgba(54, 162, 235, 1)",
@@ -240,7 +249,7 @@
                       borderWidth: 1,
                     },
                     {
-                      label: "순이익",
+                      label: "순이익(단위:원)",
                       data: data.totalIncome,
                       backgroundColor: [
                         "rgba(255, 159, 64, 1)",
