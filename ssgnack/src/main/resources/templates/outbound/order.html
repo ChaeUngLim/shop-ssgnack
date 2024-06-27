@@ -135,9 +135,9 @@
 <!--                    <b class="b2">🔍</b>-->
 <!--                </div>-->
                 <div class="rectangle-container">
-                    <input type="radio" id="viewAll" name="button" value="viewAll" onclick="handleRadioClick(event)">
+                    <input type="radio" id="viewAll" name="button" value="viewAll" th:checked="${status == null or status != 'N'}" onclick="handleRadioClick(event)">
                     <label for="viewAll">모든 주문서 보기</label><br>
-                    <input type="radio" id="viewN" name="button" value="viewN" onclick="handleRadioClick(event)">
+                    <input type="radio" id="viewN" name="button" value="viewN" th:checked="${status == 'N'}" onclick="handleRadioClick(event)">
                     <label for="viewN">출고할 주문서 보기</label>
                 </div>
             </div>

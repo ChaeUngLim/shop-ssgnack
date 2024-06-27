@@ -53,8 +53,10 @@ public class OutboundController {
         }
 
         log.info("[OutboundController] Order list: {}", orderList);
+
         model.addAttribute("orderList", orderList);
         model.addAttribute("selectCriteria", selectCriteria);
+        model.addAttribute("status", status);
 
         return "outbound/order";
     }
