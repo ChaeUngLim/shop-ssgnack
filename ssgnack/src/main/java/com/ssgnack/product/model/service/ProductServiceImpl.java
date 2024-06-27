@@ -92,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
             return 3;
         }
 
-        return 0;
+        return 6;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class ProductServiceImpl implements ProductService {
             return 4;
         }
 
-        return 0;
+        return 7;
     }
 
     @Override
