@@ -215,7 +215,7 @@
                             <div class="top">
                                 <div class="frame-parent">
                                     <div class="vector-parent">
-                                        <img class="vector-icon" alt="" src="./public/vector.svg"/>
+                                        <img class="vector-icon" alt="" th:src="@{/public/vector.svg}"/>
 
                                         <div class="menu">MENU</div>
                                     </div>
@@ -227,7 +227,7 @@
                                                         <img
                                                                 class="administration-1-icon"
                                                                 alt=""
-                                                                src="./public/administration-1@2x.png"
+                                                                th:src="@{/public/administration-1@2x.png}"
                                                         />
 
                                                         <div class="promotion">재고 관리</div>
@@ -236,8 +236,9 @@
                                                 <img
                                                         class="arrow-chevron-down-icon"
                                                         alt=""
-                                                        src="./public/arrowchevrondown.svg"
-                                                />
+                                                        th:src="@{/public/arrowchevrondown.svg}"/>
+<!--                                                        src="./public/arrowchevrondown.svg"-->
+
                                             </div>
                                         </div>
                                     </div>
@@ -250,6 +251,7 @@
                                                                 class="administration-1-icon"
                                                                 alt=""
                                                                 src="./public/promotion-1@2x.png"
+                                                                th:src="@{/public/promotion-1@2x.png}"
                                                         />
 
                                                         <div class="promotion">제품 관리</div>
@@ -258,8 +260,7 @@
                                                 <img
                                                         class="arrow-chevron-down-icon"
                                                         alt=""
-                                                        src="./public/arrowchevrondown.svg"
-                                                />
+                                                        th:src="@{public/arrowchevrondown.svg}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -271,8 +272,8 @@
                                                         <img
                                                                 class="administration-1-icon"
                                                                 alt=""
-                                                                src="./public/customerloyalty-1@2x.png"
-                                                        />
+                                                                th:src="@{/public/customerloyalty-1@2x.png}"/>
+
 
                                                         <div class="promotion">입고</div>
                                                     </div>
@@ -294,6 +295,7 @@
                                                                 class="administration-1-icon"
                                                                 alt=""
                                                                 src="./public/productmanagement-1@2x.png"
+                                                                th:src="@{/public/productmanagement-1@2x.png}"
                                                         />
 
                                                         <div class="promotion">출고</div>
