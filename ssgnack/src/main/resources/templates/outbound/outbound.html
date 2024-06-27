@@ -27,15 +27,17 @@
         <div class="div3">
             <div class="rectangle-container">
                 <div class="rectangle-div"></div>
-                <b class="ssgnack1">SSGNACK</b>
+                <b class="ssgnack1">
+                    <a href="/main" style="text-decoration-line: none; color: black; font-weight:900">SSGNACK</a>
+                </b>
                 <b class="admin1">Admin님 접속을 환영합니다.</b>
                 <div class="group-child1"></div>
                 <div class="group-div">
                     <div class="group-child2"></div>
-                    <b class="b1">로그아웃</b>
+                    <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
                 </div>
                 <div class="rectangle-wrapper-1">
-                    <div class="group-child5-1"><a href="/outbound/order" class="order">주문서 조회</a></div>
+                    <div class="group-child5-1"><a href="/outbound/order" class="order" style="text-decoration-line:none; color: white">주문서 조회</a></div>
                 </div>
             </div>
             <div class="navigation-drawer-container">
@@ -46,7 +48,9 @@
                                 <div class="vector-group">
                                     <img class="vector-icon1" alt="" th:src="@{/public/vector.svg}"/>
 
-                                    <div class="menu1">MENU</div>
+                                    <div class="menu1">
+                                        <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
+                                    </div>
                                 </div>
                                 <div class="productmanage1">
                                     <div class="component-2variant35">
@@ -60,15 +64,11 @@
                                                             th:src="@{/public/administration-1@2x.png}"
                                                     />
 
-                                                    <div class="promotion6">재고 관리</div>
+                                                    <div class="promotion6">
+                                                        <a th:href="@{/stock/list}" style="text-decoration-line:none; color: white"> 재고 관리 </a>
+                                                    </div>
                                                 </div>
                                             </div>
-<!--                                            <img-->
-<!--                                                    class="arrow-chevron-down-icon5"-->
-<!--                                                    alt=""-->
-<!--                                                    src="public/arrowchevrondown.svg"-->
-<!--                                                    th:src="@{public/arrowchevrondown.svg}"-->
-<!--                                            />-->
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,9 @@
                                                             alt=""
                                                             th:src="@{/public/promotion-1@2x.png}"/>
 
-                                                    <div class="promotion6">제품 관리</div>
+                                                    <div class="promotion6">
+                                                        <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
+                                                    </div>
                                                 </div>
                                             </div>
 <!--                                            <img-->
@@ -105,14 +107,11 @@
                                                             src="public/customerloyalty-1@2x.png"
                                                     />
 
-                                                    <div class="promotion6">입고</div>
+                                                    <div class="promotion6">
+                                                        <a href="/stock/inbound" style="text-decoration-line: none; color: white">입고</a>
+                                                    </div>
                                                 </div>
                                             </div>
-<!--                                            <img-->
-<!--                                                    class="arrow-chevron-down-icon5"-->
-<!--                                                    alt=""-->
-<!--                                                    th:src="@{/public/arrowchevrondown.svg}"-->
-<!--                                            />-->
                                         </div>
                                     </div>
                                 </div>
@@ -128,14 +127,11 @@
                                                             src="public/productmanagement-1@2x.png"
                                                     />
 
-                                                    <div class="promotion6">출고</div>
+                                                    <div class="promotion6">
+                                                        <a href="/outbound/regist" class="promotion" style="text-decoration-line: none; color: white">출고</a>
+                                                    </div>
                                                 </div>
                                             </div>
-<!--                                            <img-->
-<!--                                                    class="arrow-chevron-down-icon5"-->
-<!--                                                    alt=""-->
-<!--                                                    src="public/arrowchevrondown.svg"-->
-<!--                                            />-->
                                         </div>
                                     </div>
                                 </div>
@@ -174,10 +170,8 @@
             <form action="/outbound/regist" method="post">
                 <label><b class="id">출고 코드 : </b></label>
                 <div class="child"><input type="text" name="outboundId"></div>
-<!--                <label><b class="b5">수량 : </b></label>-->
-<!--                <div class="item"><input type="text" name="outAmt"></div>-->
                 <div class="rectangle-wrapper">
-                    <div class="group-child5"><input type="submit" value="등록하기" class="order-button"></div>
+                    <div class="group-child5"><input type="submit" value="등록하기" class="order-button" style="text-decoration-line:none; color: white"></div>
                 </div>
             </form>
         </div>
