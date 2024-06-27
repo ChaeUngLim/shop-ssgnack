@@ -34,4 +34,8 @@ public interface InboundStockMapper {
     void insertInboundHistory(InboundDTO inboundDTO);
 
     List<StockDTO> selectStockList(String productName);
+
+    int countStockByProductName(int productId);
+
+    List<StockDTO> searchStockByProductName(SelectCriteria selectCriteria, int productId);
 }

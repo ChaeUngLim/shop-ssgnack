@@ -7,12 +7,12 @@ $(document).ready(function (){
             selectProduct();
         }
     });
-    $(".group-div").click(function (){
+    $(".group-child1").click(function (){
         selectProduct();
     });
 
     function selectProduct(){
-        location.href = "/stock/search?productName=" + $("#selectByName").val();
+        location.href = "/stock/search?productId=" + $("#selectByName").val();
     }
 
 })

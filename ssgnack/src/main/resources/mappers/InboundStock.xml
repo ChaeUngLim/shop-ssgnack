@@ -67,5 +67,21 @@
         WHERE product_id = #{productId}
         ORDER BY product_id
     </select>
+    
+    <select id="countStockByProductName" resultType="_int">
+        SELECT COUNT(*)
+        FROM stock
+        WHERE product_id = #{productId}
+    </select>
+    
+    <select id="searchStockByProductName" resultMap="inboundStockResultMap">
+        SELECT
+            product_id,
+            stock_amt,
+            warehouse_id
+        FROM stock
+        WHERE product_id = #{productId}
+        LIMIT #{selectCriteria.startRow}, #{selectCriteria.limit}
+    </select>
 
 </mapper>

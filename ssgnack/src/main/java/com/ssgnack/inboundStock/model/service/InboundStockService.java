@@ -14,5 +14,9 @@ public interface InboundStockService {
 
     void inNewStock(StockDTO newStock);
 
-    List<StockDTO> selectStockList(String productName);
+//    List<StockDTO> selectStockList(String productName);
+
+    int countStockByProductName(int productId);
+
+    List<StockDTO> searchStockByProductName(SelectCriteria selectCriteria, int productId);
 }

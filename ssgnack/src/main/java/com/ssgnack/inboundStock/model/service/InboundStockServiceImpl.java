@@ -5,6 +5,7 @@ import com.ssgnack.inboundStock.model.dao.InboundStockMapper;
 import com.ssgnack.inboundStock.model.dto.InboundDTO;
 import com.ssgnack.inboundStock.model.dto.StockDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,11 +65,25 @@ public class InboundStockServiceImpl implements InboundStockService {
         inboundStockMapper.insertInboundHistory(history);
     }
 
+//    @Override
+//    public List<StockDTO> selectStockList(String productName) {
+//        return inboundStockMapper.selectStockList(productName);
+//    }
+
+
     @Override
-    public List<StockDTO> selectStockList(String productName) {
-        return inboundStockMapper.selectStockList(productName);
+    public int countStockByProductName(int productId) {
+        return inboundStockMapper.countStockByProductName(productId);
+    }
+
+    @Override
+    public List<StockDTO> searchStockByProductName(SelectCriteria selectCriteria, int productId) {
+        selectCriteria.setStartRow(selectCriteria.getStartRow() - 1);
+        return inboundStockMapper.searchStockByProductName(selectCriteria, productId);
+
     }
 }
+
 
 
 
