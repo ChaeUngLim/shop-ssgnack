@@ -26,7 +26,9 @@
     <div class="div4">
       <div class="rectangle-parent1">
         <div class="group-child1"></div>
-        <b class="ssgnack2">SSGNACK</b>
+        <b class="ssgnack2">
+          <a href="/main" style="text-decoration-line: none; color: black">SSGNACK</a>
+        </b>
         <b class="admin2">Admin님 접속을 환영합니다.</b>
         <div class="group-child2">
           <div class="chart-container">
@@ -70,7 +72,9 @@
                 <div class="vector-container">
                   <img class="vector-icon2" alt="" src="../public/vector.svg" />
 
-                  <div class="menu2" id="mainButton">MENU</div>
+                  <div class="menu2" id="mainButton">
+                    <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
+                  </div>
                 </div>
                 <div class="productmanage2">
                   <div class="component-2variant310">
@@ -83,7 +87,9 @@
                             src="../public/administration-1@2x.png"
                           />
 
-                          <div class="promotion12">재고 관리</div>
+                          <div class="promotion12">
+                            <a th:href="@{/stock/list}" style="text-decoration-line:none; color: white"> 재고 관리 </a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -105,7 +111,9 @@
                             src="../public/promotion-1@2x.png"
                           />
 
-                          <div class="promotion12">제품 관리</div>
+                          <div class="promotion12">
+                            <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -127,7 +135,9 @@
                             src="../public/customerloyalty-1@2x.png"
                           />
 
-                          <div class="promotion12">입고</div>
+                          <div class="promotion12">
+                            <a href="/stock/inbound" style="text-decoration-line: none; color: white">입고</a>
+                          </div>
                         </div>
                       </div>
                       <img
@@ -256,10 +266,5 @@
      });
 
     </script>
-    <script>
-      document.getElementById("mainButton").addEventListener("click", function() {
-        window.location.href = "/main";
-      });
-  </script>
   </body>
 </html>
