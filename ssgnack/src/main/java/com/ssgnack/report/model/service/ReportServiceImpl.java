@@ -35,7 +35,9 @@ public class ReportServiceImpl implements ReportService{
             totalIncomeList.add(reportDTO.getTotalIncome());
 
         }
-
+        System.out.println("totalIncomeList = " + totalIncomeList);
+        System.out.println("totalMonthList = " + totalMonthList);
+        System.out.println("totalSaleList = " + totalSaleList);
         return new ReportResDTO(totalSaleList, productNameList, totalMonthList, totalIncomeList);
     }
 
