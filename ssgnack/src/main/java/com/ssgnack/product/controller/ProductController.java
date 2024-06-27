@@ -146,6 +146,14 @@ public class ProductController {
                 response.put("msg", "판매 기록이 있거나 재고가 남은 물건이므로 삭제 불가능합니다 !!");
                 response.put("returnURL", "/product/main");
                 break;
+            case 6:
+                response.put("msg", "상품 수정 성공했습니다.");
+                response.put("returnURL", "/product/main");
+                break;
+            case 7:
+                response.put("msg", "상품 삭제 성공했습니다.");
+                response.put("returnURL", "/product/main");
+                break;
             default:
                 response.put("msg", "<<ERROR>> 알 수 없는 에러가 발생했습니다 !! ");
                 response.put("returnURL", "/product/main");
