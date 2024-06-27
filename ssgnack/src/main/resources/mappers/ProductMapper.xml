@@ -4,7 +4,8 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssgnack.product.model.dao.ProductMapper">
     <resultMap id="productMainMap" type="com.ssgnack.product.model.dto.ProductDTO">
-        <id property="productName" column="PRODUCT_NAME"/>
+        <id property="productId" column="PRODUCT_ID"/>
+        <result property="productName" column="PRODUCT_NAME"/>
         <result property="company" column="COMPANY_NAME"/>
         <result property="category" column="CATEGORY_NAME"/>
         <result property="price" column="PRICE"/>
@@ -14,8 +15,13 @@
         <id property="categoryId" column="CATEGORY_ID"/>
         <result property="categoryName" column="CATEGORY_NAME"/>
     </resultMap>
+    <resultMap id="companyMap" type="com.ssgnack.product.model.dto.CompanyDTO">
+        <id property="companyId" column="COMPANY_ID"/>
+        <result property="companyName" column="COMPANY_NAME"/>
+    </resultMap>
     <select id="selectProductList" resultMap="productMainMap">
         SELECT
+               PRODUCT_ID,
                PRODUCT_NAME,
                ( SELECT COMPANY_NAME FROM COMPANY B WHERE A.company_id = B.company_id) AS COMPANY_NAME,
                ( SELECT CATEGORY_NAME FROM CATEGORY B WHERE A.CATEGORY_ID = B.CATEGORY_ID) AS CATEGORY_NAME,
@@ -36,11 +42,35 @@
                                   FROM COMPANY B
                                  WHERE B.COMPANY_NAME = #{ company } )
     </select>
+    <select id="duplicateCheckId" resultType="Integer">
+        SELECT A.PRODUCT_ID
+        FROM PRODUCT A
+        WHERE A.PRODUCT_NAME = ( SELECT PRODUCT_NAME
+                                   FROM PRODUCT
+                                  WHERE PRODUCT_ID = #{ productId } )
+          AND A.COMPANY_ID = #{ company }
+    </select>
     <select id="selectCategoryList" resultMap="categoryMap">
         SELECT *
           FROM CATEGORY
     </select>
+    <select id="selectCompanyList" resultMap="companyMap">
+        SELECT *
+          FROM COMPANY
+    </select>
+    <select id="selectAllTableByProductId" resultType="Integer">
+        SELECT CNT.CNT + AMT.AMT AS CNT
+          FROM(
+               SELECT COUNT(*) AS CNT
+                 FROM inbound A,
+                      outbound B
+                WHERE A.product_id = #{ productId }
+                  AND B.product_id = #{ productId }) CNT ,
+              (SELECT stock_amt AS AMT
+                 FROM stock
+                WHERE product_id = #{ productId }) AMT
 
+    </select>
     <insert id="insertProduct">
         INSERT INTO PRODUCT
         (
@@ -71,4 +101,30 @@
         #{ company }
         )
     </insert>
+    <update id="updateProduct">
+        UPDATE PRODUCT SET
+               PRICE = #{ price },
+               COMPANY_ID = #{ company },
+               CATEGORY_ID = #{ category },
+               ORDERABLE_STATUS = #{ orderableStatus }
+         WHERE PRODUCT_ID = #{ productId }
+    </update>
+    <insert id="insertNewStock">
+        INSERT INTO STOCK
+        (
+        STOCK_AMT,
+        PRODUCT_ID
+        )
+        VALUES
+        (
+        0,
+        ( SELECT MAX(PRODUCT_ID) FROM PRODUCT  )
+        )
+    </insert>
+    <delete id="deleteProduct">
+        DELETE FROM PRODUCT WHERE PRODUCT_ID = #{ productId }
+    </delete>
+    <delete id="deleteStock">
+        DELETE FROM STOCK WHERE PRODUCT_ID = #{ productId }
+    </delete>
 </mapper>

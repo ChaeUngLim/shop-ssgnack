@@ -1,108 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{common/layouts/default}">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="initial-scale=1, width=device-width"/>
-
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
               integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
               crossorigin="anonymous">
-        <link rel="stylesheet" th:href="@{/css/product/global_product.css}"/>
-        <link rel="stylesheet" th:href="@{/css/product/product.css}"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"/>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script type="text/javascript" th:src="@{/js/product/product.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/outbound/global_outbound.css}"/>
+        <link rel="stylesheet" th:href="@{/css/outbound/order.css}"/>
+        <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+        />
+        <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+        />
+        <style>
+            .sub-title {
+                margin-top: 30px;
+            }
+        </style>
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                 crossorigin="anonymous"></script>
         <div class="div">
-            <div class="group-child"></div>
-            <b class="ssgnack">SSGNACK</b>
-            <b class="admin">Admin님 접속을 환영합니다.</b>
             <div class="rectangle-parent">
+                <div class="group-child"></div>
+                <b class="ssgnack">SSGNACK</b>
+                <b class="admin">Admin님 접속을 환영합니다.</b>
                 <div class="group-item">
-                    <!-- Product Container Start-->
-                    <h3 class="insertHeader">상품 수정</h3><hr>
-                    <div class="mb-3 mx-3">
-                        <label for="productId" class="form-label">상품명</label>
-                        <select class="form-select" id="productId" name="productId">
-                            <option value="" selected>=== 상품을 선택하세요. ===</option>
-                            <option th:each="product : ${productList}"
-                                    th:value="${product.productId}"
-                                    th:text="${product.productName}"
-                            ></option>
-                        </select>
-                    </div>
-                    <div class="mb-3 mx-3">
-                        <label for="price" class="form-label">상품가격</label>
-                        <input type="number" class="form-control" id="price" name="price"
-                               placeholder="ex) 1500">
-                    </div>
-                    <div class="row">
-                        <div class="col md-3 mx-3">
-                            <label for="company" class="form-label">회사</label>
-                            <select class="form-select" id="company" name="company">
-                                <option value="" selected>=== 회사명 선택하세요. ===</option>
-                                <option th:each="company : ${companyList}"
-                                        th:value="${company.companyId}"
-                                        th:text="${company.companyName}"
-                                ></option>
-                            </select>
+                    <div class="center">
+                        <h1 class="sub-title"><b>주문서</b></h1>
+                        <div>
+                            <!--              <form action="/outbound/order">-->
+                            <!--                <input type="text" name="stockName" id="stockName">-->
+                            <!--                <button type="submit">검색</button>-->
+                            <!--              </form>-->
                         </div>
-                        <div class="col md-3 mx-3">
-                            <label for="category" class="form-label">카테고리</label>
-                            <select class="form-select" id="category" name="category">
-                                <option value="" selected>=== 카테고리를 선택하세요. ===</option>
-                                <option th:each="category : ${categoryList}"
-                                        th:value="${category.categoryId}"
-                                        th:text="${category.categoryName}"
-                                ></option>
-                            </select>
+                        <hr>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>출고코드</th>
+                                    <th>상품코드</th>
+                                    <th>수량</th>
+                                    <th>출고일</th>
+                                    <th>고객번호</th>
+                                    <th>사번</th>
+                                    <th>출고상태</th>
+                                </tr>
+                            </thead>
+                            <tr th:each="outbound : ${ orderList }">
+                                <td th:text="${ outbound.outboundId }"></td>
+                                <td th:text="${ outbound.productId }"></td>
+                                <td th:text="${ outbound.outAmt }"></td>
+                                <td th:text="${ outbound.outDate }"></td>
+                                <td th:text="${ outbound.userId }"></td>
+                                <td th:text="${ outbound.adminId }"></td>
+                                <td th:text="${ outbound.status }"></td>
+                            </tr>
+                        </table>
+                        <!-- 페이지 처리 -->
+                        <div class="pagingArea" align="center">
+                            <!-- 맨 앞으로 이동 버튼 -->
+                            <button
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.startPage}}| + '\''"
+                                    th:disabled="${selectCriteria.pageNo == 1}"
+                            >
+                                <<
+                            </button>
+                            <!-- 이전 페이지 버튼 -->
+                            <button
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo - 1}}| + '\''"
+                                    th:disabled="${selectCriteria.pageNo == 1}"
+                            >
+                                <
+                            </button>
+                            <!-- 숫자 버튼 -->
+                            <th:block
+                                    th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
+                                <button
+                                        th:text="${ page }"
+                                        th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${page}}| + '\''"
+                                        th:disabled="${ selectCriteria.pageNo eq page }">
+                                </button>
+                            </th:block>
+
+                            <!-- 다음 페이지 버튼 -->
+                            <button
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.pageNo + 1}}| + '\''"
+                                    th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+                            >
+                                >
+                            </button>
+                            <!-- 마지막 페이지로 이동 버튼 -->
+                            <button
+                                    th:onclick="'location.href=\'/outbound/order?currentPage='+ |@{${selectCriteria.maxPage}}| + '\''"
+                                    th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+                            >
+                                >>
+                            </button>
                         </div>
-                    </div>
-                    <div class="md-3 mx-3">
-                        <label for="orderableStatus" class="form-label">판매여부</label>
-                        <select class="form-select" id="orderableStatus" name="orderableStatus">
-                            <option value="" selected>=== 판매여부를 선택하세요. ===</option>
-                            <option value="Y">판매중</option>
-                            <option value="N">판매중지</option>
-                        </select>
-                    </div>
-                    <div class="rectangle-div" id="updateSubmit">
-                        <b class="b1">변경 완료</b>
                     </div>
 
-                    <!-- Product Container End -->
                 </div>
+                <!--        <b class="stock">재고 조회(stock 테이블)</b>-->
                 <div class="rectangle-group">
                     <div class="group-inner"></div>
-                    <b class="b">회원가입/로그인</b>
+                    <b class="b">로그아웃</b>
+                    <div class="frame-div"></div>
                 </div>
-                <div class="product-delete">
-                    <div class="rectangle-div">
-                        <b class="b1">상품 삭제</b>
-                    </div>
+                <div class="rectangle-container">
+                    <div class="rectangle-div"></div>
+                    <b class="b1">상품 검색</b>
                 </div>
-                <div class="product-update dp-none">
-                    <div class="rectangle-div">
-                        <b class="b1">상품 수정</b>
-                    </div>
-                </div>
-                <div class="product-insert">
-                    <div class="rectangle-div">
-                        <b class="b1">상품 등록</b>
-                    </div>
-                </div>
-                <div class="rectangle-parent2">
-                    <div class="group-child3"></div>
-                    <textarea class="b1" id="selectByName" placeholder="상풍명 검색"></textarea>
-                </div>
-                <div class="rectangle-parent3">
-                    <div class="group-child4"></div>
-                    <b class="b5">🔍</b>
+                <div class="group-div">
+                    <div class="group-child1"></div>
+                    <b class="b2">🔍</b>
                 </div>
             </div>
             <div class="navigation-drawer-wrapper">
@@ -111,7 +131,7 @@
                         <div class="top">
                             <div class="frame-parent">
                                 <div class="vector-parent">
-                                    <img class="vector-icon" alt="" th:src="@{/img/product/vector.svg}"/>
+                                    <img class="vector-icon" alt="" src="./public/vector.svg"/>
 
                                     <div class="menu">MENU</div>
                                 </div>
@@ -123,15 +143,16 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            th:src="|@{/img/product/administration-1@2x.png}|"
+                                                            src="./public/administration-1@2x.png"
                                                     />
 
                                                     <div class="promotion">재고 관리</div>
                                                 </div>
                                             </div>
                                             <img
-                                                    class="arrow-chevron-down-icon" alt=""
-                                                    th:src="@{/img/product/arrowchevrondown.svg}"
+                                                    class="arrow-chevron-down-icon"
+                                                    alt=""
+                                                    src="./public/arrowchevrondown.svg"
                                             />
                                         </div>
                                     </div>
@@ -144,7 +165,7 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            th:src="|@{/img/product/promotion-1@2x.png}|"
+                                                            src="./public/promotion-1@2x.png"
                                                     />
 
                                                     <div class="promotion">제품 관리</div>
@@ -153,7 +174,7 @@
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
+                                                    src="./public/arrowchevrondown.svg"
                                             />
                                         </div>
                                     </div>
@@ -166,7 +187,7 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            th:src="|@{/img/product/customerloyalty-1@2x.png}|"
+                                                            src="./public/customerloyalty-1@2x.png"
                                                     />
 
                                                     <div class="promotion">입고</div>
@@ -175,7 +196,7 @@
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
+                                                    src="./public/arrowchevrondown.svg"
                                             />
                                         </div>
                                     </div>
@@ -188,7 +209,7 @@
                                                     <img
                                                             class="administration-1-icon"
                                                             alt=""
-                                                            th:src="|@{/img/product/productmanagement-1@2x.png}|"
+                                                            src="./public/productmanagement-1@2x.png"
                                                     />
 
                                                     <div class="promotion">출고</div>
@@ -197,7 +218,7 @@
                                             <img
                                                     class="arrow-chevron-down-icon"
                                                     alt=""
-                                                    th:src="|@{/img/product/arrowchevrondown.svg}|"
+                                                    src="./public/arrowchevrondown.svg"
                                             />
                                         </div>
                                     </div>
@@ -212,7 +233,7 @@
                                                             <img
                                                                     class="administration-1-icon"
                                                                     alt=""
-                                                                    th:src="|@{/img/product/order-2@2x.png}|"
+                                                                    src="./public/order-2@2x.png"
                                                             />
 
                                                             <div class="promotion">Orders</div>
@@ -221,7 +242,7 @@
                                                     <img
                                                             class="arrow-chevron-down-icon"
                                                             alt=""
-                                                            th:src="|@{/img/product/arrowchevrondown.svg}|"
+                                                            src="./public/arrowchevrondown.svg"
                                                     />
                                                 </div>
                                             </div>
