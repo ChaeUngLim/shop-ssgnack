@@ -2,6 +2,7 @@ package com.ssgnack.product.model.service;
 
 import com.ssgnack.product.model.dao.ProductMapper;
 import com.ssgnack.product.model.dto.CategoryDTO;
+import com.ssgnack.product.model.dto.CompanyDTO;
 import com.ssgnack.product.model.dto.ProductDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -56,11 +57,67 @@ public class ProductServiceImpl implements ProductService {
             return 1;
         }
 
+        bStat = mapper.insertNewStock();
+        if(!bStat){
+            return 1;
+        }
+
         return 0;
     }
 
     @Override
     public List<CategoryDTO> selectCategoryList() {
         return mapper.selectCategoryList();
+    }
+
+    @Override
+    public List<CompanyDTO> selectCompanyList() {
+        return mapper.selectCompanyList();
+    }
+
+    @Override
+    public int updateProduct(ProductDTO productDTO) {
+        Integer companyResult = 0;
+        boolean bStat = false;
+
+        companyResult = mapper.duplicateCheckId(productDTO);
+
+        if(companyResult == null || companyResult <= 0) {
+            bStat = mapper.updateProduct(productDTO);
+        }else {
+            return 2;
+        }
+
+        if(!bStat) {
+            return 3;
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int deleteProduct(int productId) {
+        boolean bStat = false;
+        Integer dataCount = 0;
+
+        dataCount = mapper.selectAllTableByProductId(productId);
+
+        if(dataCount == null || dataCount <= 0) {
+            bStat = mapper.deleteStock(productId);
+        }else{
+            return 5;
+        }
+
+        if(!bStat) {
+            return 4;
+        }
+
+        bStat = mapper.deleteProduct(productId);
+
+        if(!bStat) {
+            return 4;
+        }
+
+        return 0;
     }
 }

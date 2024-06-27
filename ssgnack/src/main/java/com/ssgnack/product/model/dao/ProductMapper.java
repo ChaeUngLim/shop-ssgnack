@@ -1,6 +1,7 @@
 package com.ssgnack.product.model.dao;
 
 import com.ssgnack.product.model.dto.CategoryDTO;
+import com.ssgnack.product.model.dto.CompanyDTO;
 import com.ssgnack.product.model.dto.ProductDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,18 @@ public interface ProductMapper {
     String duplicateCheckName(String productName);
 
     List<CategoryDTO> selectCategoryList();
+
+    List<CompanyDTO> selectCompanyList();
+
+    Integer duplicateCheckId(ProductDTO product);
+
+    boolean updateProduct(ProductDTO product);
+
+    boolean insertNewStock();
+
+    Integer selectAllTableByProductId(int productId);
+
+    boolean deleteProduct(int productId);
+
+    boolean deleteStock(int productId);
 }

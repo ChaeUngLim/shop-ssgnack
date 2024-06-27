@@ -63,4 +63,69 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#updateSubmit").click(function () {
+        let product = {
+            productId: $("#productId").val(),
+            price: $("#price").val(),
+            company: $("#company").val(),
+            category: $("#category").val(),
+            orderableStatus: $("#orderableStatus").val()
+        }
+
+        if (product.productName == ""
+            || product.price == ""
+            || product.company == ""
+            || product.category == ""
+            || product.orderableStatus == ""
+        ) {
+            alert(" 입력하지 않은 값이 존재합니다 !!");
+            return;
+        }
+
+        $.ajax({
+            url: "/product/update",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(product),
+            success: function (data) {
+
+                alert(data.msg);
+
+                window.location.href = data.returnURL;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    $("#selectRow td").click(function () {
+
+        if(confirm("정말 삭제하시겠습니까?")){
+            let productId = $(this).parent().children()[0].innerText;
+
+            if(productId == ""){
+                alert(" 입력하지 않은 값이 존재합니다 !!");
+                return;
+            }
+
+            $.ajax({
+                url: "/product/delete",
+                type: "post",
+                contentType: "text/plain",
+                data: productId,
+                success: function (data) {
+                    alert(data.msg);
+
+                    window.location.href = data.returnURL;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+        };
+    });
+
 });
