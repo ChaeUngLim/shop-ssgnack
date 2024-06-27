@@ -34,4 +34,9 @@ public interface ProductMapper {
     boolean deleteProduct(int productId);
 
     boolean deleteStock(int productId);
+
+    void fileNameUpdate(String fileName, int productId);
+
+    int selectMaxProductId();
+
 }

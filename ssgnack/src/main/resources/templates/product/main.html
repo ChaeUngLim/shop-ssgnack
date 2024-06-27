@@ -31,6 +31,7 @@
                     <table class="table table-striped">
                         <thead class="product-header tbl_header">
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">상품명</th>
                                 <th scope="col">회사명</th>
                                 <th scope="col">카테고리</th>
@@ -40,6 +41,9 @@
                         </thead>
                         <tbody>
                             <tr scope="row" th:each="product : ${ productList }">
+                                <td>
+                                    <img th:src="${product.fileName}" alt="null" style="width: 100px; height: 100px"/>
+                                </td>
                                 <td th:text="${ product.productName }"></td>
                                 <td th:text="${ product.company }"></td>
                                 <td th:text="${ product.category }"></td>

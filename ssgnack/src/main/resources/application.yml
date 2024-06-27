@@ -17,3 +17,14 @@ spring:
 # mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml
+
+# FTP
+ftp:
+  server:
+    host: ssg-java2.iptime.org
+    port: 21
+    username: ssgnack
+    password: ssgnack
+logging:
+  level:
+    com.ssgnack: debug
