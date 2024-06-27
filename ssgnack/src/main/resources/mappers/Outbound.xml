@@ -64,7 +64,7 @@
         SELECT COUNT(*) FROM outbound WHERE status = #{status}
     </select>
 
-    <select id="findOrderByStatus" resultType="com.ssgnack.outbound.model.dto.OutboundDTO">
+    <select id="findOrderByStatus" resultMap="outboundResultMap">
         <!--        SELECT * FROM outbound WHERE status = #{status}-->
         <!--        ORDER BY outbound_id-->
         <!--        LIMIT #{selectCriteria.startRow}, #{selectCriteria.limit}-->
@@ -87,9 +87,10 @@
         a.product_id,
         a.user_id
         FROM outbound a
+        WHERE a.status = #{status}
         ORDER BY a.outbound_id,
-        a.out_date) b
-        WHERE status = #{status}
+        a.out_date
+        ) b
         LIMIT #{selectCriteria.startRow}, #{selectCriteria.limit}
     </select>
 </mapper>
