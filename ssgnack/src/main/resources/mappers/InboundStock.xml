@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssgnack.inboundStock.model.dao.InboundStockMapper">
+    <resultMap id="inboundStockResultMap" type="com.ssgnack.inboundStock.model.dto.StockDTO">
+        <id property="stockId" column="stock_id"/>
+        <result property="stockAmt" column="stock_amt"/>
+        <result property="productId" column="product_id"/>
+        <result property="warehouseId" column="warehouse_id"/>
+    </resultMap>
+
+    <select id="findAllStock" resultMap="inboundStockResultMap">
+        SELECT
+        b.stock_amt,
+        b.product_id,
+        b.warehouse_id
+        FROM
+        (SELECT
+        a.stock_amt,
+        a.product_id,
+        a.warehouse_id
+        FROM stock a
+        ORDER BY a.product_id) b
+        LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectTotalCount" resultType="_int">
+        SELECT
+        COUNT(*)
+        FROM stock
+    </select>
+
+    <update id="inNewStock">
+        UPDATE stock SET
+        stock_amt = stock_amt + #{ stockAmt }
+        WHERE product_id = #{ productId }
+          AND warehouse_id = #{ warehouseId }
+    </update>
+
+    <select id="getLastInsertId">
+        SELECT LAST_INSERT_ID()
+        FROM inbound
+    </select>
+
+    <insert id="insertInboundHistory">
+        INSERT INTO INBOUND
+        (
+        IN_AMT,
+        ADMIN_ID,
+        PRODUCT_ID
+        )
+        VALUES
+        (
+        #{ inAmt },
+        #{ adminId },
+        #{ productId }
+        )
+    </insert>
+
+</mapper>

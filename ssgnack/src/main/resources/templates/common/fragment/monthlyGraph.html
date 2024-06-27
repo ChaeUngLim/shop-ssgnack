@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="/global_report.css" />
+    <link rel="stylesheet" href="/monthlyGraph.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  </head>
+  <body>
+    <div class="div7">
+      <div class="rectangle-parent3">
+        <div class="group-child4"></div>
+        <b class="ssgnack3">SSGNACK</b>
+        <b class="admin3">Admin님 접속을 환영합니다.</b>
+        <div class="group-child5">
+          <div class="chart-container">
+            <canvas id="monthlyChart"></canvas>
+          </div>
+        </div>
+        <b class="b6">기간별 매출 보고</b>
+      </div>
+      <div class="inner"></div>
+      <div class="rectangle-parent4">
+        <div class="group-child6"></div>
+        <a class="b7" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+      </div>
+      <div class="button-popper-element-butt-wrapper">
+        <div class="button-popper-element-butt">
+          <div class="margin">
+            <div class="container8">
+              <input type="text" name="daterange" />
+            </div>
+          </div>
+          <div class="container9"></div>
+        </div>
+      </div>
+      <div class="navigation-drawer-wrapper1">
+        <div class="navigation-drawer3">
+          <div class="top-wrapper1">
+            <div class="top3">
+              <div class="frame-parent1">
+                <div class="vector-parent1">
+                  <img class="vector-icon3" alt="" src="/public/vector.svg" />
+
+                  <div class="menu3" id="mainButton">MENU</div>
+                </div>
+                <div class="productmanage3">
+                  <div class="component-2variant315">
+                    <div class="nav-item15">
+                      <div class="productmanage3">
+                        <div class="left15">
+                          <img
+                            class="administration-1-icon3"
+                            alt=""
+                            src="/public/administration-1@2x.png"
+                          />
+
+                          <div class="promotion18">재고 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon15"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage3">
+                  <div class="component-2variant315">
+                    <div class="nav-item15">
+                      <div class="productmanage3">
+                        <div class="left15">
+                          <img
+                            class="administration-1-icon3"
+                            alt=""
+                            src="/public/promotion-1@2x.png"
+                          />
+
+                          <div class="promotion18">제품 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon15"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage3">
+                  <div class="component-2variant315">
+                    <div class="nav-item15">
+                      <div class="productmanage3">
+                        <div class="left15">
+                          <img
+                            class="administration-1-icon3"
+                            alt=""
+                            src="/public/customerloyalty-1@2x.png"
+                          />
+
+                          <div class="promotion18">입고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon15"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage3">
+                  <div class="component-2variant315">
+                    <div class="nav-item15">
+                      <div class="productmanage3">
+                        <div class="left15">
+                          <img
+                            class="administration-1-icon3"
+                            alt=""
+                            src="/public/productmanagement-1@2x.png"
+                          />
+
+                          <div class="promotion18">출고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon15"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="orders6">
+                  <div class="ordersvariant13">
+                    <div class="productmanage3">
+                      <div class="component-2variant315">
+                        <div class="nav-item15">
+                          <div class="productmanage3">
+                            <div class="left15">
+                              <img
+                                class="administration-1-icon3"
+                                alt=""
+                                src="/public/order-2@2x.png"
+                              />
+
+                              <div class="promotion18">Orders</div>
+                            </div>
+                          </div>
+                          <img
+                            class="arrow-chevron-down-icon15"
+                            alt=""
+                            src="/public/arrowchevrondown.svg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chart.js 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 바 형태의 그래프 스크립트 -->
+<!--    <script src="/monthly_chart.js"></script>-->
+    <script>
+      document.getElementById("mainButton").addEventListener("click", function() {
+        window.location.href = "/main";
+      });
+    </script>
+    <script>
+      $(function() {
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        }, function (start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+          $.ajax({
+            url: "monthlySales",
+            type: "get",
+            data: {
+              start: start.format('YYYY-MM-DD'),
+              end: end.format('YYYY-MM-DD')
+            },
+            success: function (data) {
+              console.log(data);
+
+              var ctx = document.getElementById("monthlyChart").getContext("2d");
+
+              var barChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: data.totalMonth,
+                  datasets: [
+                    {
+                      label: "매출",
+                      data: data.totalSale,
+                      backgroundColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "순이익",
+                      data: data.totalIncome,
+                      backgroundColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              });
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
+        });
+      });
+    </script>
+  </body>
+</html>

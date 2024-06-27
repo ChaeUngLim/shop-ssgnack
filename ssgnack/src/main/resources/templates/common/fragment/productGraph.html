@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="/global_report.css" />
+    <link rel="stylesheet" href="/productGraph.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div class="div">
+      <div class="rectangle-parent">
+        <div class="group-child"></div>
+        <b class="ssgnack">SSGNACK</b>
+        <b class="admin">Admin님 접속을 환영합니다.</b>
+        <div class="group-item">
+          <div class="chart-container">
+            <canvas id="productChart"></canvas>
+          </div>
+        </div>
+        <b class="b">상품별 매출 보고</b>
+      </div>
+      <div class="child"></div>
+      <div class="rectangle-group">
+        <div class="group-inner"></div>
+        <a class="b1" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+      </div>
+      <div class="div1">
+        <div class="form">
+          <div class="background">
+            <div class="container">
+              <div class="button-">
+                <img class="img-icon" alt="" src="/public/img.svg" />
+              </div>
+            </div>
+            <div class="input-">
+              <div class="container1">
+              </div>
+              <div class="container2">
+                <div class="container3">
+                  <div>
+<!--                    <form action="/productSales">-->
+                      <input type="text" name="productName" id="productName" style="width: 90%">
+                      <button type="button" id="btnSearch">검색</button>
+<!--                    </form>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navigation-drawer-wrapper">
+        <div class="navigation-drawer">
+          <div class="top-wrapper">
+            <div class="top">
+              <div class="frame-parent">
+                <div class="vector-parent">
+                  <img class="vector-icon" alt="" src="/public/vector.svg" />
+
+                  <div class="menu" id="mainButton">MENU</div>
+                </div>
+                <div class="productmanage">
+                  <div class="component-2variant3">
+                    <div class="nav-item">
+                      <div class="productmanage">
+                        <div class="left">
+                          <img
+                            class="administration-1-icon"
+                            alt=""
+                            src="/public/administration-1@2x.png"
+                          />
+
+                          <div class="promotion">재고 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage">
+                  <div class="component-2variant3">
+                    <div class="nav-item">
+                      <div class="productmanage">
+                        <div class="left">
+                          <img
+                            class="administration-1-icon"
+                            alt=""
+                            src="/public/promotion-1@2x.png"
+                          />
+
+                          <div class="promotion">제품 관리</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage">
+                  <div class="component-2variant3">
+                    <div class="nav-item">
+                      <div class="productmanage">
+                        <div class="left">
+                          <img
+                            class="administration-1-icon"
+                            alt=""
+                            src="/public/customerloyalty-1@2x.png"
+                          />
+
+                          <div class="promotion">입고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="productmanage">
+                  <div class="component-2variant3">
+                    <div class="nav-item">
+                      <div class="productmanage">
+                        <div class="left">
+                          <img
+                            class="administration-1-icon"
+                            alt=""
+                            src="/public/productmanagement-1@2x.png"
+                          />
+
+                          <div class="promotion">출고</div>
+                        </div>
+                      </div>
+                      <img
+                        class="arrow-chevron-down-icon"
+                        alt=""
+                        src="/public/arrowchevrondown.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="orders">
+                  <div class="ordersvariant1">
+                    <div class="productmanage">
+                      <div class="component-2variant3">
+                        <div class="nav-item">
+                          <div class="productmanage">
+                            <div class="left">
+                              <img
+                                class="administration-1-icon"
+                                alt=""
+                                src="/public/order-2@2x.png"
+                              />
+
+                              <div class="promotion">Orders</div>
+                            </div>
+                          </div>
+                          <img
+                            class="arrow-chevron-down-icon"
+                            alt=""
+                            src="/public/arrowchevrondown.svg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chart.js 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 바 형태의 그래프 스크립트 -->
+    <script th:inline="javascript">
+
+        $("#btnSearch").click(function () {
+          const productName = $("#productName").val();
+          console.log(productName);
+
+          $.ajax({
+            url: "productSales",
+            type: "get",
+            data: {productName},
+            success: function (data) {
+              console.log(data);
+
+              var ctx = document.getElementById("productChart").getContext("2d");
+
+              var barChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: data.totalMonth,
+                  datasets: [
+                    {
+                      label: "매출",
+                      data: data.totalSale,
+                      backgroundColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(54, 162, 235, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "순이익",
+                      data: data.totalIncome,
+                      backgroundColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderColor: [
+                        "rgba(255, 159, 64, 1)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              });
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
+        });
+
+    </script>
+    <script>
+      document.getElementById("mainButton").addEventListener("click", function() {
+        window.location.href = "/main";
+      });
+  </script>
+  </body>
+</html>
