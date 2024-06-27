@@ -58,7 +58,7 @@
                                             <div class="productmanage">
                                                 <div class="left">
                                                     <img class="administration-1-icon" alt="" src="/main_img/promotion-1@2x.png" />
-                                                    <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
+                                                    <a href="/product/main" class="promotion">제품 관리</a>
                                                 </div>
                                             </div>
                                             <img class="arrow-chevron-down-icon" alt="" src="/main_img/arrowchevrondown.svg" />
@@ -87,7 +87,7 @@
                                                 <div class="left">
                                                     <img class="administration-1-icon" alt="" src="/main_img/productmanagement-1@2x.png" />
                                                     <div class="promotion">
-                                                        출고
+                                                        <a href="/outbound/regist" style="text-decoration-line: none; color: white">출고</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,25 +119,25 @@
             </div>
             <div class="rectangle-group">
                 <div class="group-child"></div>
-                <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+                <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: black">로그아웃</a>
             </div>
         </div>
         <div class="buttons-parent">
             <div class="buttons">
                 <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                <a th:href="@{/report/productGraph}" class="button" id="productgraphButton" style="text-decoration-line:none; color: white">상품별 매출</a>
+                <a th:href="@{/report/productGraph}" class="button" id="productgraphButton" style="text-decoration-line:none; color: white; font-weight: bold">상품별 매출</a>
             </div>
             <img class="package-icon" alt="" src="/main_img/package.svg" />
         </div>
         <div class="buttons-group">
             <div class="buttons">
                 <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                <a th:href="@{/report/brandGraph}" class="button" id="brandgraphButton" style="text-decoration-line:none; color: white">브랜드별 매출</a>
+                <a th:href="@{/report/brandGraph}" class="button" id="brandgraphButton" style="text-decoration-line:none; color: white; font-weight: bold">브랜드별 매출</a>
             </div>
             <div class="buttons-wrapper">
                 <div class="buttons">
                     <img class="icon-lineexternal-link" alt="" src="/main_img/icon-lineexternal-link.svg" />
-                    <a th:href="@{/report/monthlyGraph}" class="button" id="monthlygraphButton" style="text-decoration-line:none; color: white">기간별 매출</a>
+                    <a th:href="@{/report/monthlyGraph}" class="button" id="monthlygraphButton" style="text-decoration-line:none; color: white; font-weight: bold">기간별 매출</a>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
     <script th:inline="javascript">
 
             $.ajax({
-                url: "totalSales",
+                url: "/totalSales",
                 type: "get",
                 data: {},
                 success: function (data) {
@@ -161,14 +161,14 @@
                             labels: data.totalMonth,
                             datasets: [
                                 {
-                                    label: '매출',
+                                    label: '매출(단위:원)',
                                     data: data.totalsale,
                                     borderColor: 'rgba(54, 162, 235, 1)',
                                     borderWidth: 1,
                                     fill: false
                                 },
                                 {
-                                    label: '순이익',
+                                    label: '순이익(단위:원)',
                                     data: data.totalIncome,
                                     borderColor: 'rgba(255, 159, 64, 1)',
                                     borderWidth: 1,
