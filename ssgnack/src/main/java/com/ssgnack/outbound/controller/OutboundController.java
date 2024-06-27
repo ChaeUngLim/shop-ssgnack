@@ -47,13 +47,17 @@ public class OutboundController {
 
     // 출고 처리
     @GetMapping("/regist")
-    public String registPage(){
+    public String registPage() {
         return "outbound/outbound";
     }
 
     @PostMapping("/regist")
     public String registOrder(@ModelAttribute OutboundDTO newOrder
-    , RedirectAttributes rttr, Model model) {
-        return "";
+            , RedirectAttributes rttr, Model model) {
+
+        outboundService.registNewOrder(newOrder);
+        rttr.addFlashAttribute("successMessage", "출고가 완료되었습니다.");
+
+        return "redirect:/outbound/order";
     }
 }

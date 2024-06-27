@@ -9,4 +9,6 @@ public interface OutboundService {
     int selectTotalCount();
 
     List<OutboundDTO> findAllOrder(SelectCriteria selectCriteria);
+
+    void registNewOrder(OutboundDTO newOrder);
 }

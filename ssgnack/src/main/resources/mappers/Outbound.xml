@@ -42,4 +42,21 @@
             COUNT(*)
         FROM outbound
     </select>
+
+    <update id="registNewOrder">
+        UPDATE stock SET
+        stock_amt = stock_amt - #{stockAmt}
+        WHERE product_id = #{ productId }
+        AND warehouse_id = #{ warehouseId }
+    </update>
+
+    <update id="updateStatus">
+        UPDATE outbound SET
+        status = 'Y'
+        WHERE outbound_id = #{outboundId}
+    </update>
+
+    <select id="selectOutbound" resultMap="outboundResultMap">
+        SELECT * FROM outbound WHERE OUTBOUND_ID = #{ outboundId }
+    </select>
 </mapper>
