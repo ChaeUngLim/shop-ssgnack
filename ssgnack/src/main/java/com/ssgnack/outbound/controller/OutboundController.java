@@ -25,8 +25,9 @@ public class OutboundController {
 
     // 주문서 조회
     @GetMapping("/order")
-    public String findOrderList(Model model, @RequestParam(value = "currenPage", defaultValue = "1") int pageNo) {
+    public String findOrderList(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int pageNo) {
 
+        log.info("[OutboundController] pageNo: {}", pageNo);
         int totalCount = outboundService.selectTotalCount();
         log.info("[OutboundController] Total count: {}", totalCount);
 

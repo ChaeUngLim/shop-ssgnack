@@ -24,7 +24,7 @@
             b.user_id
         FROM
         (SELECT
-            a.outbound_Id,
+            a.outbound_id,
             a.out_date,
             a.out_amt,
             a.status,
@@ -32,8 +32,14 @@
             a.product_id,
             a.user_id
         FROM outbound a
-        ORDER BY out_date) b
+        ORDER BY a.outbound_id,
+                a.out_date) b
         LIMIT #{startRow}, #{limit}
+    </select>
 
+    <select id="selectTotalCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM outbound
     </select>
 </mapper>
