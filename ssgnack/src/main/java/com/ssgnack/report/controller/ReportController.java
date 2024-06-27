@@ -1,5 +1,6 @@
 package com.ssgnack.report.controller;
 
+import com.ssgnack.admin.controller.dto.AdminFormDto;
 import com.ssgnack.report.model.dto.ReportResDTO;
 import com.ssgnack.report.model.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +22,17 @@ public class ReportController {
         this.reportService = reportService;
     }
 
+
     /***
-     * 메인페이지
+     * 초기화 화면: 로그인 화면
      */
     @GetMapping("")
-    public String firstPage(){
-        return "common/fragment/main";
+    public String firstPage(Model model){
+        log.info("여기여기 login 페이지");
+
+        AdminFormDto adminFormDto = new AdminFormDto();
+        model.addAttribute("adminFormDto", adminFormDto);
+        return "/admin/login";
     }
 
     /***
@@ -34,7 +40,7 @@ public class ReportController {
      */
     @GetMapping("/report/productGraph")
     public String productPage(){
-        return "report/productGraph";
+        return "/report/productGraph";
     }
 
     /***
@@ -42,7 +48,7 @@ public class ReportController {
      */
     @GetMapping("/report/brandGraph")
     public String brandPage(){
-        return "report/brandGraph";
+        return "/report/brandGraph";
     }
 
     /***
@@ -50,7 +56,7 @@ public class ReportController {
      */
     @GetMapping("/report/monthlyGraph")
     public String monthlyPage(){
-        return "report/monthlyGraph";
+        return "/report/monthlyGraph";
     }
 
     /***
@@ -61,34 +67,11 @@ public class ReportController {
         return "common/fragment/main";
     }
 
-    /***
-     * 상품별 페이지로 이동
-     */
-    @GetMapping("/productgraph")
-    public String productgraphPage(){
-        return "common/fragment/productGraph";
-    }
-
-    /***
-     * 브랜드별 페이지로 이동
-     */
-    @GetMapping("/brandgraph")
-    public String brandgraphPage(){
-        return "common/fragment/brandGraph";
-    }
-
-    /***
-     * 기간별 페이지로 이동
-     */
-    @GetMapping("/monthlygraph")
-    public String monthlygraphPage(){
-        return "common/fragment/monthlyGraph";
-    }
 
     /***
      * 전체 매출 현황
      */
-    @GetMapping({"","/totalSales"})
+    @GetMapping("/totalSales")
     @ResponseBody
     public ReportResDTO totalSales(Model model){
         ReportResDTO reportDTOList = reportService.totalSales();
@@ -106,20 +89,10 @@ public class ReportController {
     @ResponseBody
     public ReportResDTO productSales(Model model, @RequestParam(required = false) String productName){
         log.info("productName {}", productName);
-//        List<ReportDTO> reportList = reportService.productSales(productName);
-
-
-//        for (ReportDTO reportDTO : reportList) {
-//            System.out.println("reportDTO.getTotalMonth() + \"/\" +reportDTO.getTotalSale() = " + reportDTO.getTotalMonth() + "/" +reportDTO.getTotalSale());
-//        }
-
         ReportResDTO reportDTOList = reportService.productSales(productName);
         System.out.println("reportDTOList.getTotalMonth() = " + reportDTOList.getTotalMonth());
         System.out.println("reportDTOList.getTotalSale() = " + reportDTOList.getTotalSale());
         System.out.println("reportDTOList.getTotalIncome() = " + reportDTOList.getTotalIncome());
-
-//        model.addAttribute("reportList", reportList);
-//         model.addAttribute("reportList", reportDTOList);
         return reportDTOList;
     }
 

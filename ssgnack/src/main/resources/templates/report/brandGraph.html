@@ -37,10 +37,19 @@
         </div>
         <b class="b4">브랜드별 매출 보고</b>
       </div>
-      <div class="item"></div>
+      <div class="item">
+        <div class="moveother">
+          <a th:href="@{/report/productGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            제품별 매출 |
+          </a>
+          <a th:href="@{/report/monthlyGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            기간별 매출
+          </a>
+        </div>
+      </div>
       <div class="rectangle-parent2">
         <div class="group-child3"></div>
-        <a class="b5" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+        <a class="b5" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">로그아웃</a>
       </div>
       <div class="div5">
         <div class="form1">
@@ -52,13 +61,13 @@
             </div>
             <div class="input-1">
               <div class="container5">
-                <div class="div6">검색</div>
+                <div class="div6"></div>
               </div>
               <div class="container6">
                 <div class="container7">
                     <input type="text" name="companyName" id="companyName" style="width: 90%">
-                    <button type="button" id="btnBrand">검색</button>
                 </div>
+                <button type="button" id="btnBrand">검색</button>
               </div>
             </div>
           </div>
@@ -225,7 +234,7 @@
                labels: data.productName,
                datasets: [
                  {
-                   label: "매출",
+                   label: "매출(단위:원)",
                    data: data.totalSale,
                    backgroundColor: [
                      "rgba(54, 162, 235, 1)",
@@ -236,7 +245,7 @@
                    borderWidth: 1,
                  },
                  {
-                   label: "순이익",
+                   label: "순이익(단위:원)",
                    data: data.totalIncome,
                    backgroundColor: [
                      "rgba(255, 159, 64, 1)",

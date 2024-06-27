@@ -124,13 +124,15 @@
   justify-content: flex-start;
 }
 .container7 {
-  flex: 1;
+  align-items: center;
+  flex-direction: row;
   position: relative;
   height: 24px;
+  width: 180px;
 }
 .container6 {
   position: absolute;
-  width: calc(100% - 2px);
+  width: 140px;
   top: 5px;
   right: 0;
   left: 2px;
@@ -147,13 +149,13 @@
   background-color: var(--wwwnikecom-wild-sand);
 }
 .input-1 {
-  width: 124px;
+  width: 150px;
   position: relative;
   height: 36px;
 }
 .background1 {
   align-self: stretch;
-  width: 168px;
+  width: 180px;
   flex-direction: row;
 }
 .background1,
@@ -162,10 +164,12 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 180px;
 }
 .form1 {
   align-self: stretch;
   flex-direction: row;
+  width: 180px;
 }
 .div5 {
   position: absolute;
@@ -336,4 +340,16 @@
   width: 95%; /* 차트의 너비를 조정 */
   height: 80%; /* 차트의 높이를 조정 */
   margin-top: 70px; /* 위쪽 여백을 조정하여 다른 요소와의 간격을 설정 */
+}
+
+#btnBrand {
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.moveother {
+  align-items: center;
+  margin-left: 20px;
 }

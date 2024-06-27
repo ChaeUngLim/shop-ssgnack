@@ -40,10 +40,19 @@
         </div>
         <b class="b6">기간별 매출 보고</b>
       </div>
-      <div class="inner"></div>
+      <div class="inner">
+        <div class="moveothers">
+          <a th:href="@{/report/productGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            제품별 매출 |
+          </a>
+          <a th:href="@{/report/brandGraph}" style="text-decoration-line:none; color: white; font-weight: 500; font-size: 20px">
+            브랜드별 매출
+          </a>
+        </div>
+      </div>
       <div class="rectangle-parent4">
         <div class="group-child6"></div>
-        <a class="b7" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">회원가입/로그인</a>
+        <a class="b7" th:href="@{../admin/login}" id="loginButton" style="text-decoration-line:none; color: black">로그아웃</a>
       </div>
       <div class="button-popper-element-butt-wrapper">
         <div class="button-popper-element-butt">
@@ -228,7 +237,7 @@
                   labels: data.totalMonth,
                   datasets: [
                     {
-                      label: "매출",
+                      label: "매출(단위:원)",
                       data: data.totalSale,
                       backgroundColor: [
                         "rgba(54, 162, 235, 1)",
@@ -239,7 +248,7 @@
                       borderWidth: 1,
                     },
                     {
-                      label: "순이익",
+                      label: "순이익(단위:원)",
                       data: data.totalIncome,
                       backgroundColor: [
                         "rgba(255, 159, 64, 1)",
