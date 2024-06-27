@@ -19,6 +19,9 @@
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
         />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/inboundStock/stock.js}"></script>
+
         <style>
             .sub-title {
                 margin-top: 30px;
@@ -114,7 +117,8 @@
                 </div>
                 <div class="rectangle-container">
                     <div class="rectangle-div"></div>
-                    <b class="b1">상품 검색</b>
+<!--                    <b class="b1">상품 ID 검색</b>-->
+                    <textarea class="b1" id="selectByName" placeholder="상품 ID 검색"></textarea>
                 </div>
                 <div class="group-div">
                     <div class="group-child1"></div>

@@ -44,8 +44,8 @@ public class InboundStockServiceImpl implements InboundStockService {
     @Transactional
     public void inNewStock(StockDTO newStock) {
 
-         // 1. 입고
-        log.info("🐰🐰🐰🐰🐰 {} 🐰🐰🐰🐰🐰",newStock);
+        // 1. 입고
+        log.info("🐰🐰🐰🐰🐰 {} 🐰🐰🐰🐰🐰", newStock);
         newStock.setWarehouseId(1);
         inboundStockMapper.inNewStock(newStock);
 
@@ -64,22 +64,11 @@ public class InboundStockServiceImpl implements InboundStockService {
         inboundStockMapper.insertInboundHistory(history);
     }
 
+    @Override
+    public List<StockDTO> selectStockList(String productName) {
+        return inboundStockMapper.selectStockList(productName);
     }
+}
 
 
-//    public void inNewStock(InboundDTO newStock) {
-//
-//        // 1. 입고
-//        inboundStockMapper.inNewStock(newStock);
-//
-//        // 2. 방금 생성된 입고 내역의 ID 가져오기
-//        int inboundId = inboundStockMapper.getLastInsertId();
-//
-//        // 3. 입고 내역 생성
-//        InboundDTO history = new InboundDTO();
-//        history.setInboundId(inboundId);
-//        history.setProductId(newStock.getProductId());
-//        history.setInAmt(newStock.getInAmt());
-//        history.setAdminId(newStock.getAdminId());
-//    }
 

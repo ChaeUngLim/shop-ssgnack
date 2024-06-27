@@ -58,4 +58,14 @@
         )
     </insert>
 
+    <select id="selectStockList" resultMap="inboundStockResultMap">
+        SELECT
+            product_id,
+            stock_amt,
+            warehouse_id
+        FROM stock
+        WHERE product_id = #{productId}
+        ORDER BY product_id
+    </select>
+
 </mapper>

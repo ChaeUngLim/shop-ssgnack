@@ -32,4 +32,6 @@ public interface InboundStockMapper {
      */
     int getLastInsertId();
     void insertInboundHistory(InboundDTO inboundDTO);
+
+    List<StockDTO> selectStockList(String productName);
 }

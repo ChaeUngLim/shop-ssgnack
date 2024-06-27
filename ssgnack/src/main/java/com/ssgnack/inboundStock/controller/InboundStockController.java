@@ -61,4 +61,16 @@ public class InboundStockController {
         return "redirect:/stock/list";
     }
 
+    @GetMapping("/search")
+    public String stockSearch(Model model, @RequestParam(defaultValue = "") String productName) {
+
+        List<StockDTO> stockList = inboundStockService.selectStockList(productName);
+        SelectCriteria selectCriteria = new SelectCriteria();
+
+        model.addAttribute("selectCriteria", selectCriteria);
+        model.addAttribute("stockList", stockList);
+
+        return "inboundStock/stock";
+    }
+
 }
