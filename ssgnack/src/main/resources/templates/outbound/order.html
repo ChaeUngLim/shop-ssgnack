@@ -11,6 +11,7 @@
               crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/outbound/global_outbound.css}"/>
         <link rel="stylesheet" th:href="@{/css/outbound/order.css}"/>
+        <link rel="stylesheet" th:href="@{/css/logout.css}"/>
         <link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -101,7 +102,7 @@
         <div class="div">
             <div class="rectangle-parent">
                 <div class="group-child"></div>
-                <b class="ssgnack">SSGNACK</b>
+                <a href="/main" style="text-decoration-line: none; color: black; font-weight:900" class="ssgnack">SSGNACK</a>
                 <b class="admin">Admin님 접속을 환영합니다.</b>
                 <div class="group-item">
                     <div class="center">
@@ -180,10 +181,9 @@
 
                 </div>
                 <!--        <b class="stock">재고 조회(stock 테이블)</b>-->
-                <div class="rectangle-group">
+                <div class="rectangle-group logout">
                     <div class="group-inner"></div>
-                    <a class="b" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
-                    <div class="frame-div"></div>
+                    <a class="b" th:href="@{../admin/login}">로그아웃</a>
                 </div>
                 <div class="rectangle-container">
                     <div class="radio-group">
@@ -217,7 +217,7 @@
                                     <div class="vector-parent">
                                         <img class="vector-icon" alt="" th:src="@{/public/vector.svg}"/>
 
-                                        <div class="menu">MENU</div>
+                                        <a href="/main" style="text-decoration-line: none; color: white">MENU</a>
                                     </div>
                                     <div class="productmanage">
                                         <div class="component-2variant3">
@@ -230,7 +230,7 @@
                                                                 th:src="@{/public/administration-1@2x.png}"
                                                         />
 
-                                                        <div class="promotion">재고 관리</div>
+                                                        <a th:href="@{/stock/list}" style="text-decoration-line:none; color: white"> 재고 관리 </a>
                                                     </div>
                                                 </div>
                                                 <img
@@ -253,7 +253,7 @@
                                                                 th:src="@{/public/promotion-1@2x.png}"
                                                         />
 
-                                                        <div class="promotion">제품 관리</div>
+                                                        <a href="/product/main" class="promotion" style="text-decoration-line: none; color: white">제품 관리</a>
                                                     </div>
                                                 </div>
                                                 <img
@@ -274,7 +274,7 @@
                                                                 th:src="@{/public/customerloyalty-1@2x.png}"/>
 
 
-                                                        <div class="promotion">입고</div>
+                                                        <a href="/stock/inbound" style="text-decoration-line: none; color: white">입고</a>
                                                     </div>
                                                 </div>
                                                 <img

@@ -351,6 +351,14 @@
   transition: background-color 0.3s, border 0.3s;
 }
 
+.product-delete>.rectangle-div:hover .b1,
+.product-insert>.rectangle-div:hover .b1,
+.product-update>.rectangle-div:hover .b1,
+.group-item>.rectangle-div:hover .b1{
+  color: black;
+  transition: background-color 0.3s, border 0.3s;
+}
+
 .group-item>.rectangle-div {
   top: 555px;
   left: 795px;
@@ -369,6 +377,10 @@
 
 .dp-none {
   display: none;
+}
+
+#selectByName {
+  color: black;
 }
 
 .b1 {

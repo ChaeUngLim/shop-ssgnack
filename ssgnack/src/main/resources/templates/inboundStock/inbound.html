@@ -11,6 +11,7 @@
               crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/inboundStock/global_InboundStock.css}"/>
         <link rel="stylesheet" th:href="@{/css/inboundStock/inbound.css}"/>
+        <link rel="stylesheet" th:href="@{/css/logout.css}"/>
         <link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -37,9 +38,9 @@
                 </b>
                 <b class="admin1">Admin님 접속을 환영합니다.</b>
                 <div class="group-child3"></div>
-                <div class="rectangle-parent2">
+                <div class="rectangle-parent2 logout">
                     <div class="group-child4"></div>
-                    <a class="b3" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
+                    <a class="b3" th:href="@{../admin/login}">로그아웃</a>
                 </div>
 <!--                <div class="rectangle-wrapper-1">-->
 <!--                    <div class="group-child5-1"><a href="" class="inbound-history">입고내역 조회</a></div>-->
@@ -185,8 +186,8 @@
                 <div class="child"><input type="text" name="productId"></div>
                 <label><b class="b5">수량 : </b></label>
                 <div class="item"><input type="text" name="stockAmt"></div>
-                <div class="rectangle-wrapper">
-                    <div class="group-child5"><input type="submit" value="등록하기" class="inbound-button" style="text-decoration-line: none; color: white"></div>
+                <div class="rectangle-wrapper btn-hover">
+                    <div class="group-child5"><input type="submit" value="등록하기" class="inbound-button"></div>
                 </div>
             </form>
         </div>
