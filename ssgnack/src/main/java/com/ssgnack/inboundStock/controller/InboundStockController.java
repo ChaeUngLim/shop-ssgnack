@@ -61,4 +61,27 @@ public class InboundStockController {
         return "redirect:/stock/list";
     }
 
+    // 상품 검색
+    @GetMapping("/search")
+    public String stockSearch(Model model,
+                              @RequestParam(value="currentPage", defaultValue = "1") int pageNo,
+                              @RequestParam(defaultValue = "0") int productId) {
+
+        int totalCount = inboundStockService.countStockByProductName(productId);
+        log.info("[InboundStockController] Search Total Count: {}", totalCount);
+
+        int limit = 10;
+        int buttonAmount = 10;
+
+        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(pageNo,totalCount,limit,buttonAmount);
+
+        List<StockDTO> stockList = inboundStockService.searchStockByProductName(selectCriteria, productId);
+
+        model.addAttribute("selectCriteria", selectCriteria);
+        model.addAttribute("stockList", stockList);
+        model.addAttribute("productId", productId);
+
+        return "inboundStock/stock";
+    }
+
 }
