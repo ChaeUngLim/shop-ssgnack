@@ -48,14 +48,14 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>재고코드</th>
+<!--                                    <th>재고코드</th>-->
                                     <th>상품코드</th>
                                     <th>재고량</th>
                                     <th>창고코드</th>
                                 </tr>
                             </thead>
                             <tr th:each="stock : ${ stockList }">
-                                <td th:text="${ stock.stockId }"></td>
+<!--                                <td th:text="${ stock.stockId }"></td>-->
                                 <td th:text="${ stock.productId }"></td>
                                 <td th:text="${ stock.stockAmt }"></td>
                                 <td th:text="${ stock.warehouseId }"></td>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="rectangle-container">
                     <div class="rectangle-div"></div>
-                    <textarea class="b1" id="selectByName" placeholder="상품 ID 검색"></textarea>
+                    <textarea class="b1" id="selectByName" placeholder="상품코드 검색"></textarea>
                 </div>
                 <div class="group-div">
                     <div class="group-child1"><b class="b2">🔍</b></div>
