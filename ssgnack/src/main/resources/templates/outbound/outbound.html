@@ -11,6 +11,7 @@
               crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/outbound/global_outbound.css}"/>
         <link rel="stylesheet" th:href="@{/css/outbound/outbound.css}"/>
+        <link rel="stylesheet" th:href="@{/css/logout.css}"/>
         <link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap"
@@ -32,12 +33,12 @@
                 </b>
                 <b class="admin1">Admin님 접속을 환영합니다.</b>
                 <div class="group-child1"></div>
-                <div class="group-div">
+                <div class="group-div logout">
                     <div class="group-child2"></div>
-                    <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
+                    <a class="b1" th:href="@{../admin/login}">로그아웃</a>
                 </div>
-                <div class="rectangle-wrapper-1">
-                    <div class="group-child5-1"><a href="/outbound/order" class="order" style="text-decoration-line:none; color: white">주문서 조회</a></div>
+                <div class="rectangle-wrapper-1 btn-hover">
+                    <div class="group-child5-1"><a href="/outbound/order" class="order">주문서 조회</a></div>
                 </div>
             </div>
             <div class="navigation-drawer-container">
@@ -170,8 +171,8 @@
             <form action="/outbound/regist" method="post">
                 <label><b class="id">출고 코드 : </b></label>
                 <div class="child"><input type="text" name="outboundId"></div>
-                <div class="rectangle-wrapper">
-                    <div class="group-child5"><input type="submit" value="등록하기" class="order-button" style="text-decoration-line:none; color: white"></div>
+                <div class="rectangle-wrapper btn-hover">
+                    <div class="group-child5"><input type="submit" value="등록하기" class="order-button"></div>
                 </div>
             </form>
         </div>

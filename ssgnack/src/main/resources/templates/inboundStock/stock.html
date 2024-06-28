@@ -11,6 +11,7 @@
               crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/inboundStock/global_InboundStock.css}"/>
         <link rel="stylesheet" th:href="@{/css/inboundStock/stock.css}"/>
+        <link rel="stylesheet" th:href="@{/css/logout.css}"/>
         <link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
@@ -106,18 +107,16 @@
 
                 </div>
                 <!--        <b class="stock">재고 조회(stock 테이블)</b>-->
-                <div class="rectangle-group">
+                <div class="rectangle-group logout">
                     <div class="group-inner"></div>
-                    <a class="b" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
-                    <div class="frame-div"></div>
+                    <a class="b" th:href="@{../admin/login}">로그아웃</a>
                 </div>
                 <div class="rectangle-container">
                     <div class="rectangle-div"></div>
                     <textarea class="b1" id="selectByName" placeholder="상품코드 검색"></textarea>
                 </div>
-                <div class="group-div">
+                <div class="group-div btn-hover">
                     <div class="group-child1"><b class="b2">🔍</b></div>
-
                 </div>
             </div>
             <div class="navigation-drawer-wrapper">

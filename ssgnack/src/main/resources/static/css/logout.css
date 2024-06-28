@@ -1,0 +1,37 @@
+.logout:hover div{
+    background-color: #FFFFFF;
+    border: #547aff 1px solid;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.logout:hover a {
+    color: black;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.logout a{
+    color: white;
+    text-decoration-line: none;
+}
+
+.btn-hover:hover div{
+    background-color: #FFFFFF;
+    border: #547aff 1px solid;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.btn-hover:hover a ,
+.btn-hover:hover input {
+    color: black;
+    transition: background-color 0.3s, border 0.3s;
+}
+.btn-hover a {
+    color: white;
+    text-decoration-line: none;
+}
+
+.btn-hover input {
+    color: white;
+}

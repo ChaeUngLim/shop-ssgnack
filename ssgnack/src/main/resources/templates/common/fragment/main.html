@@ -7,6 +7,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="/global_main.css" />
     <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" th:href="@{/css/logout.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400&display=swap" />
@@ -117,9 +118,9 @@
                     </div>
                 </div>
             </div>
-            <div class="rectangle-group">
+            <div class="rectangle-group logout">
                 <div class="group-child"></div>
-                <a class="b1" th:href="@{../admin/login}" style="text-decoration-line:none; color: white">로그아웃</a>
+                <a class="b1" th:href="@{../admin/login}">로그아웃</a>
             </div>
         </div>
         <div class="buttons-parent">
